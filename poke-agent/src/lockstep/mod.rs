@@ -32,10 +32,10 @@ mod text_box;
 mod trainer_card;
 mod two_option_menu;
 
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::cycles::MachineCycles;
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::cycles::MachineCycles;
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use pokered::input::Joypad;
 use pokered::command::Decision;
 use pokered::mode::Status;
@@ -63,7 +63,7 @@ pub(crate) fn to_vblank(gb: &mut GameBoy) {
 /// which on a DMG nothing claims, is set to the overworld's, as a map loaded on an SGB leaves it: every
 /// fixture this is given stands in the overworld.
 pub(crate) fn on_sgb(state: &[u8]) -> GameBoy {
-    use gb::ram::RAM;
+    use gbc::ram::RAM;
     use crate::pokemon::symbols::pokered_symbols as sym;
     const SET_PAL_OVERWORLD: u8 = 0x09;
     let mut gb = GameBoy::sgb(crate::pokemon::roms::POKERED);

@@ -125,7 +125,7 @@ fn is_outdoors(tileset: crate::pokemon::map_header::TileSetId) -> bool {
 /// The path to every room within `depth` doors of `hub`, from the ROM's warp tables. Each starts
 /// at a room the hub opens onto and ends at the room; the hub is not included.
 pub fn room_paths(hub: Map, depth: u8) -> Vec<Vec<Map>> {
-    use gb::mmu::MMU;
+    use gbc::mmu::MMU;
     use crate::pokemon::map_metadata::MapMetadataReader;
     let Ok(mmu) = MMU::from_rom(crate::pokemon::roms::POKERED) else { return Vec::new() };
     let mut paths = Vec::new();
@@ -159,7 +159,7 @@ pub fn room_paths(hub: Map, depth: u8) -> Vec<Vec<Map>> {
 
 /// The maps a hub's connections lead to.
 pub fn connected_routes(hub: Map) -> Vec<Map> {
-    use gb::mmu::MMU;
+    use gbc::mmu::MMU;
     use crate::pokemon::map_header::MapHeaderReader;
     let Ok(mmu) = MMU::from_rom(crate::pokemon::roms::POKERED) else { return Vec::new() };
     let Ok(header) = mmu.read_map_header(hub) else { return Vec::new() };
@@ -220,7 +220,7 @@ pub const AWKWARD_SET: &[(Map, &str)] = &[
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::mmu::MMU;
+    use gbc::mmu::MMU;
     use crate::pokemon::map_header::MapHeaderReader;
     use crate::pokemon::map_metadata::MapMetadataReader;
     use crate::pokemon::roms;

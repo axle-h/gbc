@@ -19,11 +19,11 @@ mod slots;
 mod stats;
 mod status_screen;
 
-use gb::core::CoreMode;
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::ram::{RAM, ROM};
-use gb::registers::RegisterSet;
+use gbc::core::CoreMode;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::ram::{RAM, ROM};
+use gbc::registers::RegisterSet;
 use crate::lockstep::breakpoint;
 use crate::pokemon::symbols::{pokered_symbols, DmgBank, DmgPointer};
 

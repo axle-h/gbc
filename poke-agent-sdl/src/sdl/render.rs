@@ -22,7 +22,7 @@ use sdl2::event::Event;
 use sdl2::keyboard::{Keycode, Mod, Scancode};
 use sdl2::mouse::MouseButton;
 use sdl2::pixels::PixelFormatEnum;
-use gb::lcd_control::{TileDataMode, TileMapMode};
+use gbc::lcd_control::{TileDataMode, TileMapMode};
 use poke_agent::pokemon::{PokemonApi, PokemonApiTrait};
 use poke_agent::pokemon::policy::ConsolePolicy;
 use pokered::audio::synth::SAMPLE_RATE;

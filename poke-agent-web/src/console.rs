@@ -2,11 +2,11 @@
 //! `NativeAgent`. The streams take a [`Frame`] and interleaved stereo samples from either and
 //! nothing else.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::GameBoy;
-use gb::lcd_palette::LcdColor;
-use gb::model::Model;
-use gb::ppu::{LCD_HEIGHT, LCD_WIDTH};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::GameBoy;
+use gbc::lcd_palette::LcdColor;
+use gbc::model::Model;
+use gbc::ppu::{LCD_HEIGHT, LCD_WIDTH};
 use poke_agent::pokemon::agent::{AgentEvent, PokemonAgent};
 use poke_agent::pokemon::map_metadata::MapMetadataCache;
 use poke_agent::pokemon::native_agent::NativeAgent;
@@ -178,7 +178,7 @@ impl Console {
     pub fn save_state(&self) -> Result<Vec<u8>, String> {
         match self {
             Self::Emulated(e) => e.gb.save_state(),
-            Self::Native(n) => Ok(n.agent.game().save_with_screenshot(&gb::screenshot::png(&*self.screen(), LCD_WIDTH as u32, LCD_HEIGHT as u32))),
+            Self::Native(n) => Ok(n.agent.game().save_with_screenshot(&gbc::screenshot::png(&*self.screen(), LCD_WIDTH as u32, LCD_HEIGHT as u32))),
         }
     }
 

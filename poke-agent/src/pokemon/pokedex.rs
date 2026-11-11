@@ -1,9 +1,9 @@
 use std::collections::BTreeMap;
 use strum::IntoEnumIterator;
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::species::PokemonSpecies;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointer};
-use gb::ram::ROM;
+use gbc::ram::ROM;
 
 #[derive(Debug, Clone, Default)]
 pub struct Pokedex {

@@ -7,8 +7,8 @@
 
 use std::collections::VecDeque;
 
-use gb::cycles::MachineCycles;
-use gb::joypad::JoypadButton;
+use gbc::cycles::MachineCycles;
+use gbc::joypad::JoypadButton;
 use poke_core::geometry::Point8;
 use pokered::command::{Command, Decision, Refusal, Reply};
 use pokered::mode::{Mode, Status};
@@ -1254,7 +1254,7 @@ impl NativeAgent {
     /// `why`. A prize counter with no route is waited on as long as the emulated agent waits.
     fn task_blocked(&mut self, task: Task, why: String) -> Result<(), String> {
         const PRIZE_BLOCKED_POLLS: u32 = (crate::pokemon::postgame::game_corner::BLOCKED_TICKS as u64
-            * crate::pokemon::agent::AGENT_RESOLUTION.m_cycles() / gb::cycles::MachineCycles::PER_FRAME.m_cycles()) as u32;
+            * crate::pokemon::agent::AGENT_RESOLUTION.m_cycles() / gbc::cycles::MachineCycles::PER_FRAME.m_cycles()) as u32;
         let bound = match task {
             Task::Talk(TalkUse { what: Talk::Prize(_), .. }) => PRIZE_BLOCKED_POLLS,
             _ => MAX_TASK_BLOCKED_POLLS,

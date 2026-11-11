@@ -11,3 +11,5 @@ mod lockstep;
 mod harvest;
 #[cfg(test)]
 mod rom_equality;
+#[cfg(test)]
+mod emulator_tests;

@@ -1,9 +1,9 @@
 //! The yes/no the save menu asks, which is the shortest route from a fixture to a two-option menu:
 //! START, SAVE, and the prompt is up before anything is written.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::Mode;

@@ -1,9 +1,9 @@
 //! The party menu the start menu's `POKéMON` row opens, drawn from the fixture's own party.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;
 use pokered::input::Joypad;

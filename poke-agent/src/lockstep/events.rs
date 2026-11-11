@@ -3,7 +3,7 @@
 //! trade and the day care, each from the fixture nearest it with WRAM written to clear the event it
 //! tests.
 
-use gb::game_boy::GameBoy;
+use gbc::game_boy::GameBoy;
 use poke_core::map::Map;
 use poke_core::species::PokemonSpecies;
 use poke_core::sprite::SpriteFacing;

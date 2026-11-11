@@ -1,11 +1,11 @@
 //! One LCD frame and one encoded video message, the two video types [`crate::published`] needs.
 
-use gb::lcd_palette::LcdColor;
-use gb::ppu::{LCD_HEIGHT, LCD_WIDTH};
+use gbc::lcd_palette::LcdColor;
+use gbc::ppu::{LCD_HEIGHT, LCD_WIDTH};
 
 pub const PIXELS: usize = LCD_WIDTH * LCD_HEIGHT;
 
-/// One LCD frame, exactly as `gb::ppu::PPU::lcd` hands it over.
+/// One LCD frame, exactly as `gbc::ppu::PPU::lcd` hands it over.
 pub type Frame = [LcdColor; PIXELS];
 
 /// A message ready for the wire, with what the stream needs to order it against a keyframe.

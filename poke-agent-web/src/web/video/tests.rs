@@ -2,8 +2,8 @@
 
 use super::*;
 use poke_agent::published::Published;
-use gb::cycles::MachineCycles;
-use gb::game_boy::GameBoy;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::GameBoy;
 use poke_agent::pokemon::agent::{AGENT_RESOLUTION, PokemonAgent};
 use poke_agent::pokemon::map_metadata::MapMetadataCache;
 use poke_agent::pokemon::{PokemonApi, roms};

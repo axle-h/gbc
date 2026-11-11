@@ -52,7 +52,7 @@ const fn grey(level: u8) -> [u8; BYTES_PER_PIXEL] {
     [level, level, level, OPAQUE]
 }
 
-/// What a CGB boot ROM installs for `POKEMON RED`: combination 13 of `gb::boot_palette`, which is
+/// What a CGB boot ROM installs for `POKEMON RED`: combination 13 of `gbc::boot_palette`, which is
 /// `palette_comb 3, 4, 4`, so the background and the `OBP1` objects share the red ramp and the
 /// `OBP0` objects are green. A lockstep pins these against the emulator's own tables.
 pub const GBC_BACKGROUND: [u16; 4] = [0x7FFF, 0x421F, 0x1CF2, 0x0000];

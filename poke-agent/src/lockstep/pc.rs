@@ -7,10 +7,10 @@
 //! Then `<PKMN>LEAGUE` over a Hall of Fame record copied out of a finished game's SRAM, and
 //! `PROF.OAK's PC` rating the fixture's Pokédex.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::bag::BagItem;
 use poke_core::species::PokemonSpecies;
 use pokered::systems::hall_of_fame::{HallOfFameMon, HOF_TEAM_CAPACITY};

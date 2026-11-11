@@ -3,8 +3,8 @@
 //! anyway, by the cartridge's lag frames and the loading the recreation drops.
 
 use std::path::Path;
-use gb::cycles::MachineCycles;
-use gb::game_boy::GameBoy;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::GameBoy;
 use poke_agent::pokemon::PokemonApi;
 use poke_agent::pokemon::agent::{AgentEvent, PokemonAgent};
 use poke_agent::pokemon::map_metadata::MapMetadataCache;

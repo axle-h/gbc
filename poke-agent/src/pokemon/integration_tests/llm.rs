@@ -97,7 +97,7 @@ fn the_llm_plays_from_a_fixture() {
         })
         .collect();
 
-    let screen = ((gb::ppu::LCD_WIDTH * SCALE) as u32, (gb::ppu::LCD_HEIGHT * SCALE) as u32);
+    let screen = ((gbc::ppu::LCD_WIDTH * SCALE) as u32, (gbc::ppu::LCD_HEIGHT * SCALE) as u32);
     assert!(decoded.iter().any(|(size, detail)| *size == screen && detail == "low"),
             "no `detail: low` screenshot at {screen:?} among {decoded:?}");
 

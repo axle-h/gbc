@@ -7,11 +7,11 @@
 use std::collections::VecDeque;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButton;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButton;
 use strum::IntoEnumIterator;
-use gb::ram::{RAM, ROM};
+use gbc::ram::{RAM, ROM};
 use poke_core::bag::BagItem;
 use poke_core::item::ItemId;
 use poke_core::battle::BattleAction;
@@ -213,7 +213,7 @@ impl Policy for Recording {
         self.inner.restart(run_dir)
     }
 
-    fn take_manual_input(&mut self) -> Vec<gb::joypad::JoypadButton> {
+    fn take_manual_input(&mut self) -> Vec<gbc::joypad::JoypadButton> {
         self.inner.take_manual_input()
     }
 
@@ -385,12 +385,12 @@ struct Tape {
 /// A read of `hRandomAdd` or `hRandomSub` with no `call Random` before it, which the recreation takes
 /// as a draw of its own.
 struct Read {
-    at: gb::game_boy::Breakpoint,
+    at: gbc::game_boy::Breakpoint,
     bytes: &'static [u16],
 }
 
 /// The first instruction after `label` that starts with `code`.
-fn code_after(label: crate::pokemon::symbols::DmgPointer, code: &[u8]) -> gb::game_boy::Breakpoint {
+fn code_after(label: crate::pokemon::symbols::DmgPointer, code: &[u8]) -> gbc::game_boy::Breakpoint {
     let mut at = breakpoint(label);
     let rom = crate::pokemon::roms::POKERED;
     let offset = |address: u16| if address < 0x4000 { address as usize }
@@ -403,12 +403,12 @@ fn code_after(label: crate::pokemon::symbols::DmgPointer, code: &[u8]) -> gb::ga
 }
 
 /// The `ldh a, [byte]` first after `label`.
-fn ldh_after(label: crate::pokemon::symbols::DmgPointer, byte: u16) -> gb::game_boy::Breakpoint {
+fn ldh_after(label: crate::pokemon::symbols::DmgPointer, byte: u16) -> gbc::game_boy::Breakpoint {
     code_after(label, &[0xF0, byte as u8])
 }
 
 /// Where the first `call Random` after `label` returns to.
-fn random_returns_after(label: crate::pokemon::symbols::DmgPointer) -> gb::game_boy::Breakpoint {
+fn random_returns_after(label: crate::pokemon::symbols::DmgPointer) -> gbc::game_boy::Breakpoint {
     let [low, high] = sym::Random.address.to_le_bytes();
     let mut at = code_after(label, &[0xCD, low, high]);
     at.address += 3;
@@ -498,7 +498,7 @@ impl Tape {
                         if wandering { self.wander.push(byte) } else { self.bytes.push(byte) }
                         // A read the call returns onto: running on from here would pass its breakpoint.
                         let bank = if from < 0x4000 { 0 } else { gb.core().mmu().rom_bank() as u8 };
-                        if let Some(read) = reads.iter().find(|read| read.at == gb::game_boy::Breakpoint::new(bank, from)) {
+                        if let Some(read) = reads.iter().find(|read| read.at == gbc::game_boy::Breakpoint::new(bank, from)) {
                             self.take(gb, read);
                         }
                     }

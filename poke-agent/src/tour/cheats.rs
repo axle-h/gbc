@@ -469,7 +469,7 @@ mod tests {
     /// The sidecar writes badges but not the party during a battle or the black-out window.
     #[test]
     fn the_sidecar_will_not_write_the_party_during_a_battle() {
-        use gb::ram::RAM;
+        use gbc::ram::RAM;
 
         let mut fixture = TestFixture::with_policy(
             crate::pokemon::integration_tests::BATTLE_STATE,

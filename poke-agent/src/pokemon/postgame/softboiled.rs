@@ -1,12 +1,12 @@
 //! Softboiled from the party menu: START, POKéMON, the giver, its field-move box, then the party
 //! menu `.softboiled` brings back for the target, and B out of everything once the heal lands.
 
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::agent::{field_move_menu_button, AgentState, PokemonAgent};
 use crate::pokemon::encoding::{GameMode, PokemonBlockAddresses};
 use crate::pokemon::symbols::pokered_symbols;
 use crate::pokemon::{PokemonApi, PokemonApiTrait};
-use gb::ram::ROM;
+use gbc::ram::ROM;
 
 /// Ticks until the driver stops choosing and only backs out.
 const TICK_BUDGET: u32 = 1500;

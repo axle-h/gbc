@@ -2,7 +2,7 @@ use std::cmp::PartialEq;
 use std::collections::{HashMap, HashSet};
 use std::fmt::{Display, Formatter};
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::map::Map;
 use crate::pokemon::actions::OverworldAction;
 use crate::pokemon::map_metadata::{facing_button, CurrentMap, PlayerFacingDirection};

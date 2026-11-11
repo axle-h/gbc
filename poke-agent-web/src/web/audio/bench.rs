@@ -1,8 +1,8 @@
 use std::sync::OnceLock;
 
 use super::*;
-use gb::cycles::MachineCycles;
-use gb::game_boy::GameBoy;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::GameBoy;
 use poke_agent::pokemon::agent::PokemonAgent;
 use poke_agent::pokemon::map_metadata::MapMetadataCache;
 use poke_agent::pokemon::policy::RandomPolicy;

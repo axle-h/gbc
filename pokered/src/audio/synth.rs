@@ -90,9 +90,8 @@ const CUTOFF_HZ: f32 = 22_500.0;
 const HIGH_PASS_POLE: f32 = 1.0 - 1.0 / 256.0;
 
 /// The output stage, which is not the DAC. A DMG has an amplifier and a speaker between its DACs
-/// and the air, and both roll treble off; the emulator's resampler stands in for them with a tilt
-/// of 8 dB at half the sample rate, and one pole here is that same curve to within a few percent
-/// across the band. Without it the synth is flat, which is *brighter* than the cartridge has ever
+/// and the air, and both roll treble off; this is the same one pole the emulator's resampler ends
+/// on. Without it the synth is flat, which is *brighter* than the cartridge has ever
 /// sounded through anything, and a backend that can be swapped under the same host had better not
 /// change the character of the sound when it is.
 const TREBLE_ROLLOFF_HZ: f32 = 8_250.0;

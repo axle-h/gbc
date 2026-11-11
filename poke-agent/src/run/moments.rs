@@ -291,7 +291,7 @@ pub fn screen(run_dir: &Path, n: u32) -> Option<Vec<u8>> {
     if moment.state.ends_with(".pkrd") {
         pokered::saved_screenshot(&state).ok()?.map(<[u8]>::to_vec)
     } else {
-        gb::savestate::screenshot(&state).ok()?
+        gbc::savestate::screenshot(&state).ok()?
     }
 }
 

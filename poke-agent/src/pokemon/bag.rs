@@ -1,7 +1,7 @@
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::item::ItemId;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
-use gb::ram::{RAM, ROM};
+use gbc::ram::{RAM, ROM};
 pub use poke_core::bag::*;
 
 pub trait BagReader {

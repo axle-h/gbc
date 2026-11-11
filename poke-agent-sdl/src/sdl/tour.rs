@@ -4,8 +4,8 @@
 //! a brain of its own in this process.
 
 use std::time::{Duration, Instant};
-use gb::cycles::MachineCycles;
-use gb::game_boy::GameBoy;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::GameBoy;
 use poke_agent::llm::battle_script::BattleScript;
 use poke_agent::llm::config::{DEFAULT_COMPACT_ABOVE, DEFAULT_MAX_TOKENS, DEFAULT_REQUEST_TIMEOUT_SECS, LlmConfig};
 use poke_agent::llm::history::History;

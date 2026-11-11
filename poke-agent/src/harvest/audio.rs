@@ -9,10 +9,10 @@
 //! reads with it — so a trace starts from the state `AudioEngine::default` is, and a fixture needs
 //! to carry no initial conditions beyond which bank and which sound.
 
-use gb::core::CoreMode;
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::ram::{RAM, ROM};
+use gbc::core::CoreMode;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::ram::{RAM, ROM};
 use pokered::audio::data::{AudioBank, SoundId};
 use pokered::audio::engine::{encode_writes, AudioEngine, Cue, CueInput, CueTrace, TraceInput};
 use pokered::audio::Write;

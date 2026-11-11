@@ -2,14 +2,14 @@
 name = "poke-agent"
 version = "1.0.0"
 edition = "2024"
-description = "Plays Pokémon Red on a gb emulator, through the game's own memory."
+description = "Plays Pokémon Red on the gbc emulator, through the game's own memory."
 
 [features]
 # The per-badge legs, the playthroughs, the soak, the coverage walk and the probes.
 slow-tests = []
 
 [dependencies]
-gb = { path = "../gb" }
+gbc = { path = "../gbc" }
 poke-core = { path = "../poke-core" }
 pokered = { path = "../pokered" }
 base64 = "0.22"

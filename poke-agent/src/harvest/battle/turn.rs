@@ -1,7 +1,7 @@
 //! `pokered/fixtures/battle/`: the status checks before a move, what lands after it, and the
 //! residual damage at the end of a turn.
 
-use gb::ram::ROM;
+use gbc::ram::ROM;
 use pokered::systems::battle::turn::MoveMenu;
 use pokered::systems::battle::{Arena, Side};
 use serde_json::{json, Value};

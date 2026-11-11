@@ -152,7 +152,7 @@ fn every_teleport_pad_in_the_gym_is_a_row_including_the_one_underfoot() {
     use crate::pokemon::tile::MetaTile;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::SaffronGym).unwrap());
     // (1, 5) is a top-left pad landing on (11, 11), the only pad in Sabrina's centre room.
     let standing_on: Point8 = match std::env::var("GB_PROBE_AT").ok().as_deref() {

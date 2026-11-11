@@ -2,8 +2,8 @@
 //! Opening it turns the LCD off to load its tiles and so does leaving, so neither way is timed;
 //! what is compared is the whole screen, as tiles and as the picture on the LCD.
 
-use gb::game_boy::GameBoy;
-use gb::ram::RAM;
+use gbc::game_boy::GameBoy;
+use gbc::ram::RAM;
 use pokered::command::Decision;
 use pokered::gfx::compose::WIDTH;
 use pokered::input::Joypad;

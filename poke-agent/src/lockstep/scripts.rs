@@ -12,10 +12,10 @@
 //! map load is compared but not timed: the battle lockstep times a battle's interior, and a map loads
 //! with the LCD off.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::map::Map;
 use poke_core::species::PokemonSpecies;
 use poke_core::sprite::SpriteFacing;

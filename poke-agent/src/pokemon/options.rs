@@ -1,4 +1,4 @@
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -110,8 +110,8 @@ pub fn keep_game_options(mmu: &mut MMU, options: &GameOptions) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::mmu::MMU;
-    use gb::roms::blargg_cpu::ROM;
+    use gbc::mmu::MMU;
+    use crate::pokemon::roms::POKERED as ROM;
 
     #[test]
     fn test_round_trip_all_combinations() {

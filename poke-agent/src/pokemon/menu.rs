@@ -1,5 +1,5 @@
 use poke_core::geometry::Point8;
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::battle::BattleAction;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
 

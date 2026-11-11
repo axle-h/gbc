@@ -8,7 +8,7 @@
 
 use std::sync::Arc;
 
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use poke_core::geometry::Point8;
 use poke_core::sprite::{PictureId, PlayerFacingDirection, Sprite, SpriteFacing};
 use pokered::gfx::ui::UiSurface;

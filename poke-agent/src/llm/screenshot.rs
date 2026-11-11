@@ -2,7 +2,7 @@
 
 use base64::Engine;
 
-use gb::ppu::{LCD_HEIGHT, LCD_WIDTH};
+use gbc::ppu::{LCD_HEIGHT, LCD_WIDTH};
 use crate::frame::Frame;
 
 /// Nearest-neighbour upscale before encoding.
@@ -53,7 +53,7 @@ pub fn encode(frame: &Frame) -> Vec<u8> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::lcd_palette::LcdColor;
+    use gbc::lcd_palette::LcdColor;
 
     /// An off-by-one in the upscale is invisible in a thumbnail and misleads the model.
     #[test]

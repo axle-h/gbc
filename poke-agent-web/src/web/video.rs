@@ -15,8 +15,8 @@
 
 use std::collections::{HashMap, HashSet};
 
-use gb::lcd_palette::LcdColor;
-use gb::ppu::{LCD_HEIGHT, LCD_WIDTH};
+use gbc::lcd_palette::LcdColor;
+use gbc::ppu::{LCD_HEIGHT, LCD_WIDTH};
 
 pub use poke_agent::frame::{Encoded, Frame, PIXELS};
 

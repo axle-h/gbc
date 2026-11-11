@@ -1,5 +1,5 @@
-use gb::mmu::MMU;
-use gb::ram::{RAM, ROM};
+use gbc::mmu::MMU;
+use gbc::ram::{RAM, ROM};
 use crate::pokemon::strings::PokemonString;
 
 pub use poke_core::symbols::{pokered_events, pokered_toggles, DmgBank, DmgPointer};

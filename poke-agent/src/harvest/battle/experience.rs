@@ -1,7 +1,7 @@
 //! `pokered/fixtures/battle/`: `GainExperience`, and `FaintEnemyPokemon`'s Exp. All.
 
-use gb::game_boy::GameBoy;
-use gb::ram::ROM;
+use gbc::game_boy::GameBoy;
+use gbc::ram::ROM;
 use poke_core::item::ItemId;
 use pokered::systems::battle::experience::ExpEvent;
 use pokered::systems::battle::Arena;

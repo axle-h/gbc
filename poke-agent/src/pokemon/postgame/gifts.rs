@@ -1,7 +1,7 @@
 //! Fossil revival, gift Pokémon, one-off rooms, and the party-menu script driver they share.
 
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::agent::{AgentState, PokemonAgent, Reach};
 use crate::pokemon::encoding::GameMode;
 use crate::pokemon::item::ItemId;
@@ -11,7 +11,7 @@ use crate::pokemon::policy::{FieldMove, PartyRef, PolicyStep};
 use crate::pokemon::species::PokemonSpecies;
 use crate::pokemon::tile::MetaTile;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
-use gb::ram::ROM;
+use gbc::ram::ROM;
 use crate::pokemon::{GameState, PokemonApi, PokemonApiTrait};
 
 /// Silph's lift panel, a bg-event in `SilphCoElevator` shared by every floor.

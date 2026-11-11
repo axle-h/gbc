@@ -1,7 +1,7 @@
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::{Mode, Status};

@@ -1,5 +1,5 @@
 use std::fmt::{Display, Formatter};
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::PokemonApiTrait;
 
 /// Reads what the game is saying, one frame at a time, out of the tile map.
@@ -201,7 +201,7 @@ fn longest_overlap(left: &str, right: &str) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use gb::joypad::JoypadButtonState;
+    use gbc::joypad::JoypadButtonState;
     use crate::pokemon::encoding::GameMode;
     use crate::pokemon::GameState;
     use crate::pokemon::menu::MenuState;

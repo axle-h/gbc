@@ -7,11 +7,11 @@ use battle::{BattleState, BattleStateReader};
 use encoding::{GameMode, PokemonEncoding};
 use party::PokemonParty;
 use tile_map::MetaTileMap;
-use gb::game_boy::GameBoy;
+use gbc::game_boy::GameBoy;
 use poke_core::geometry::Point8;
-use gb::joypad::{JoypadButton, JoypadButtonState};
-use gb::mmu::MMU;
-use gb::ram::{RAM, ROM};
+use gbc::joypad::{JoypadButton, JoypadButtonState};
+use gbc::mmu::MMU;
+use gbc::ram::{RAM, ROM};
 use crate::pokemon::bag::{Bag, BagReader, BagWriter};
 use bag::BagItem;
 use crate::pokemon::font::{render_font_string, FontAware, FONT_BYTES};
@@ -186,7 +186,7 @@ impl<'a> PokemonApi<'a> {
             .filter_map(|(x, y)| {
                 let tile = mmu.read(pokered_symbols::wTileMap.address + y as u16 * SCREEN_TILES.0 as u16 + x as u16);
                 (tile >= FIRST_FONT_TILE)
-                    .then(|| ((tile - FIRST_FONT_TILE) as usize, gb::geometry::Point8 { x, y }))
+                    .then(|| ((tile - FIRST_FONT_TILE) as usize, gbc::geometry::Point8 { x, y }))
             })
             .collect();
         text_of_tiles(coordinates, only_message_box)
@@ -318,7 +318,7 @@ impl<'a> PokemonApi<'a> {
 
 /// Font tiles at their screen coordinates, as the text they spell: a line per row, a space where
 /// tiles are not adjacent.
-fn text_of_tiles(coordinates: Vec<(usize, gb::geometry::Point8)>, only_message_box: bool) -> String {
+fn text_of_tiles(coordinates: Vec<(usize, gbc::geometry::Point8)>, only_message_box: bool) -> String {
     rows_of_tiles(coordinates, only_message_box).into_iter().map(|(_, line)| line).join(" ")
 }
 
@@ -337,12 +337,12 @@ fn message_of_rows(rows: Vec<(u8, String)>) -> Option<String> {
 }
 
 /// [`text_of_tiles`] a row at a time, with the row each line is on.
-fn rows_of_tiles(mut coordinates: Vec<(usize, gb::geometry::Point8)>, only_message_box: bool) -> Vec<(u8, String)> {
+fn rows_of_tiles(mut coordinates: Vec<(usize, gbc::geometry::Point8)>, only_message_box: bool) -> Vec<(u8, String)> {
     coordinates.sort_by_key(|(_, p)| *p);
 
     let mut lines = Vec::new();
     let mut current_line = Vec::new();
-    let mut prev_pos: Option<gb::geometry::Point8> = None;
+    let mut prev_pos: Option<gbc::geometry::Point8> = None;
     for (char_id, pos) in coordinates {
         if only_message_box && pos.y < MESSAGE_BOX_MIN_Y {
             continue;

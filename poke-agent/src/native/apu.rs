@@ -1,7 +1,7 @@
-use gb::audio::Audio;
-use gb::cycles::MachineCycles;
-use gb::divider::Divider;
-use gb::mmu::MMU;
+use gbc::audio::Audio;
+use gbc::cycles::MachineCycles;
+use gbc::divider::Divider;
+use gbc::mmu::MMU;
 use pokered::audio::{Voices, Write};
 
 /// The APU puts a level change at the end of the update that finds it, and the emulator updates

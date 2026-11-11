@@ -534,8 +534,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "gb"
-version = "1.0.0"
+name = "gbc"
+version = "0.1.0"
 dependencies = [
  "bincode",
  "bitflags 2.9.3",
@@ -1082,7 +1082,7 @@ dependencies = [
  "base64",
  "bitflags 2.9.3",
  "flate2",
- "gb",
+ "gbc",
  "image",
  "itertools 0.14.0",
  "poke-core",
@@ -1104,7 +1104,7 @@ name = "poke-agent-sdl"
 version = "1.0.0"
 dependencies = [
  "fontdue",
- "gb",
+ "gbc",
  "image",
  "poke-agent",
  "pokered",
@@ -1118,7 +1118,7 @@ dependencies = [
  "axum",
  "base64",
  "flate2",
- "gb",
+ "gbc",
  "image",
  "opus-rs",
  "poke-agent",

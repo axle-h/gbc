@@ -1268,7 +1268,7 @@ mod tests {
     /// Every script state is said on the overworld turn, with the file that fixes it.
     #[test]
     fn every_battle_script_state_is_said_on_the_turn_that_can_do_something_about_it() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/at-vermilion.bin")).expect("the fixture loads");
         let state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state");
@@ -1314,7 +1314,7 @@ mod tests {
     }
 
     fn state_from(fixture: &[u8]) -> GameState {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(fixture).expect("the committed fixture loads");
         { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state")
@@ -1498,7 +1498,7 @@ mod tests {
         use crate::llm::guide::{status, GuideStatus};
         use crate::pokemon::badge::Badge;
 
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/at-vermilion.bin")).expect("the fixture loads");
         let state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state");
@@ -1543,7 +1543,7 @@ mod tests {
     fn a_dark_cave_says_why_and_what_stands_between_the_party_and_flash() {
         use crate::pokemon::item::ItemId;
         use crate::pokemon::move_name::PokemonMoveName;
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/soak-rock-tunnel.bin")).expect("the fixture loads");
         let mut state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state");
@@ -1575,7 +1575,7 @@ mod tests {
 
     #[test]
     fn an_obstacle_the_party_cannot_pass_is_named_rather_than_silently_dropped() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/at-vermilion.bin")).expect("the fixture loads");
         let mut state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state");

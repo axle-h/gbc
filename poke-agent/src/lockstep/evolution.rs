@@ -4,10 +4,10 @@
 //! unless it is stopped, so each side runs on its own and every tile map either one shows is
 //! compared, in order, with the frame it first appeared on.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::move_name::PokemonMoveName;
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;

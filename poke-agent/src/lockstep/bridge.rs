@@ -2,8 +2,8 @@
 //! out of WRAM and SRAM. Everything a save keeps and every map's script state is carried, so a
 //! difference after an action is the recreation's rather than this bridge's.
 
-use gb::game_boy::GameBoy;
-use gb::ram::ROM;
+use gbc::game_boy::GameBoy;
+use gbc::ram::ROM;
 use poke_core::map::Map;
 use poke_core::move_name::PokemonMoveName;
 use poke_core::species::PokemonSpecies;
@@ -575,8 +575,8 @@ mod tests {
     /// cartridge's `wSavedSprite*` say he stood, on both sides.
     #[test]
     fn a_guide_bridged_while_he_is_away_is_put_back_where_he_stood() {
-        use gb::joypad::JoypadButtonState;
-        use gb::ram::RAM;
+        use gbc::joypad::JoypadButtonState;
+        use gbc::ram::RAM;
         use poke_core::symbols::pokered_events::EVENT_BEAT_BROCK;
         use poke_core::symbols::pokered_toggles::TOGGLE_GYM_GUY;
         use poke_core::symbols::pokered_map_scripts::{PEWTERCITY_YOUNGSTER, SCRIPT_PEWTERCITY_DEFAULT,

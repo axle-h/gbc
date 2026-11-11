@@ -1,9 +1,9 @@
 //! The overworld, against the cartridge: the same walk played on both, compared at every step's end.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::map::Map;
 use poke_core::sprite::SpriteFacing;
 use pokered::gfx::compose::WIDTH;
@@ -56,7 +56,7 @@ impl Cartridge {
 
     /// Runs to the first of `points`, recording the NPC routines' `Random` bytes on the way. The
     /// LCD is off while a map loads, so a stretch without any of them is not an error.
-    pub(super) fn run_to(&mut self, points: &[gb::game_boy::Breakpoint]) -> gb::game_boy::Breakpoint {
+    pub(super) fn run_to(&mut self, points: &[gbc::game_boy::Breakpoint]) -> gbc::game_boy::Breakpoint {
         let random = breakpoint(sym::Random);
         let movement = sym::UpdateNPCSprite.address..sym::DoScriptedNPCMovement.address;
         let mut all = points.to_vec();

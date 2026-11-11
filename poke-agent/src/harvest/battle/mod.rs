@@ -16,9 +16,9 @@ mod turn;
 #[cfg(feature = "slow-tests")]
 mod generate;
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::ram::{RAM, ROM};
 use poke_core::move_name::PokemonMoveName;
 use poke_core::moves::MoveData;
 use poke_core::species::PokemonSpecies;

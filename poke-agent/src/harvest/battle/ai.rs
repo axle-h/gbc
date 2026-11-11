@@ -1,6 +1,6 @@
 //! `pokered/fixtures/battle/`: `AIEnemyTrainerChooseMoves`, `SelectEnemyMove` and `TrainerAI`.
 
-use gb::ram::ROM;
+use gbc::ram::ROM;
 use poke_core::item::ItemId;
 use pokered::systems::battle::ai::AiAction;
 use pokered::systems::battle::{Arena, Side};

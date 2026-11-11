@@ -3,7 +3,7 @@
 use std::collections::VecDeque;
 use std::sync::atomic::Ordering;
 
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use poke_core::geometry::Point8;
 use crate::llm::battle_report::{BattleReport, MAX_QUEUED as MAX_QUEUED_REPORTS};
 use crate::llm::battle_script::{self, Outcome as ScriptOutcome, ScriptState};
@@ -992,7 +992,7 @@ mod tests {
     use std::sync::{Arc, Mutex};
     use std::time::{Duration, Instant};
 
-    use gb::game_boy::GameBoy;
+    use gbc::game_boy::GameBoy;
     use crate::llm::LlmError;
     use crate::llm::client::ChatEndpoint;
     use crate::llm::config::LlmConfig;

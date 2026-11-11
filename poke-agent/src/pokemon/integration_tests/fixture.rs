@@ -52,7 +52,7 @@ impl TestFixture {
         gb.load_state(save_state).expect("failed to load save state");
         if cgb {
             // Fixture sections come from a DMG machine, so check the load kept the switch.
-            assert_eq!(gb.core().mmu().color_mode(), gb::model::ColorMode::CgbCompat,
+            assert_eq!(gb.core().mmu().color_mode(), gbc::model::ColorMode::CgbCompat,
                 "GB_TEST_MODEL=cgb, so the loaded state must still be a CGB in compatibility mode");
         }
 

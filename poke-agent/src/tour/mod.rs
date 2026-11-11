@@ -15,7 +15,7 @@ pub mod pace;
 pub mod phases;
 pub mod turn;
 
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 
 use crate::pokemon::encoding::GameMode;
 use crate::pokemon::map::Map;

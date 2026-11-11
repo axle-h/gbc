@@ -1,4 +1,4 @@
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::map::Map;
 use crate::pokemon::rom_gfx::rom_slice;
 use crate::pokemon::symbols::{pokered_symbols, DmgBank, DmgPointer};

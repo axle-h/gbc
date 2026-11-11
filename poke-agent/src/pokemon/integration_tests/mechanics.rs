@@ -119,7 +119,7 @@ fn the_cinnabar_gym_door_is_a_row_only_while_the_secret_key_is_held() {
 fn the_mansion_holes_land_where_the_cartridge_sends_them() {
     use crate::pokemon::map_metadata::MapMetadataReader;
     use crate::pokemon::symbols::pokered_symbols;
-    let gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+    let gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
     let mmu = gb.core().mmu();
     let metadata = mmu.read_map_metadata(Map::PokemonMansion3F).expect("3F reads");
     let width = metadata.dimensions().full_width();
@@ -625,7 +625,7 @@ fn item_prices_match_the_rom_table() {
 /// A queued raw press reaches the game by a path the state machine has no action for.
 #[test]
 fn manual_input_presses_a_button_the_agent_never_would() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
 
     let mut fixture = TestFixture::new(PALLET_TOWN_STATE, Duration::from_secs(60), vec![]);
     // Settle into the overworld idle first, so the press pre-empts a running state machine.
@@ -647,7 +647,7 @@ fn manual_input_presses_a_button_the_agent_never_would() {
 /// Each manual press is held for two ticks and released for one; neither shows in the game state.
 #[test]
 fn manual_input_holds_then_releases_each_press() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
 
     let mut fixture = TestFixture::new(PALLET_TOWN_STATE, Duration::from_secs(60), vec![]);
     for _ in 0..20 { fixture.step(); }
@@ -667,7 +667,7 @@ fn manual_input_holds_then_releases_each_press() {
 /// The manual input queue is capped, so a model cannot take the game from the agent for long.
 #[test]
 fn manual_input_queue_is_capped() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
 
     let mut fixture = TestFixture::new(PALLET_TOWN_STATE, Duration::from_secs(1), vec![]);
     fixture.agent.queue_manual_input(
@@ -781,7 +781,7 @@ fn policy_sees_every_event_and_gets_a_tool_poll() {
 
 #[test]
 fn a_policy_can_ask_for_a_raw_press_and_the_agent_delivers_it() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
 
     /// Decides at the overworld poll and hands the press over a tick later, as `LlmPolicy` does.
     #[derive(Default)]
@@ -1333,7 +1333,7 @@ fn a_toss_of_part_of_a_stack_keeps_the_rest() {
 /// A menu the agent did not open is closed, not confirmed.
 #[test]
 fn a_menu_left_open_is_closed_rather_than_confirmed() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
 
     let mut fixture = TestFixture::new(PALLET_TOWN_STATE, Duration::from_secs(60), vec![]);
     for _ in 0..20 { fixture.step(); }
@@ -2048,7 +2048,7 @@ fn a_shop_is_not_raided_while_the_policy_is_still_thinking() {
 /// Returns the money left, the refusals seen, and the bag before and after.
 fn shop_with_a_policy_that_never_answers(money: u32) -> (u32, usize, Vec<(ItemId, u8)>, Vec<(ItemId, u8)>) {
     use crate::pokemon::map_metadata::MapMetadataCache;
-    use gb::game_boy::GameBoy;
+    use gbc::game_boy::GameBoy;
     use crate::pokemon::policy::{DeterministicPolicy, Policy};
     use crate::pokemon::actions::OverworldAction;
     use crate::pokemon::battle::BattleAction;
@@ -2281,7 +2281,7 @@ fn a_map_the_cartridge_has_not_finished_loading_offers_no_rows() {
     use crate::pokemon::map_metadata::{CurrentMap, MapMetadataReader, PlayerFacingDirection};
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::SafariZoneCenter).unwrap());
     let at = |x: u8, y: u8, header_loaded: bool| {
         MetaTileMap::new(&CurrentMap {
@@ -2422,7 +2422,7 @@ fn a_seafoam_staircase_the_script_cancels_is_not_a_row() {
                                        script_cancelled_warps};
     use crate::pokemon::symbols::pokered_symbols;
     use crate::pokemon::tile_map::WarpTrigger;
-    use gb::ram::RAM;
+    use gbc::ram::RAM;
     use std::sync::Arc;
 
     // EVENT_SEAFOAM3_BOULDER1/2_DOWN_HOLE = $9C8/$9C9 → byte 313, bits 0 and 1;
@@ -2489,7 +2489,7 @@ fn a_seafoam_staircase_the_script_cancels_is_not_a_row() {
 fn the_wardens_boulder_can_be_shoved_off_the_square_the_rare_candy_is_reached_from() {
     use crate::pokemon::map_metadata::{CurrentMap, MapMetadataReader, PlayerFacingDirection};
     use crate::pokemon::tile::MetaTile;
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
     use poke_core::map::MapSprite;
     use poke_core::sprite::{PictureId, Sprite, SpriteFacing};
     use std::sync::Arc;
@@ -2497,7 +2497,7 @@ fn the_wardens_boulder_can_be_shoved_off_the_square_the_rare_candy_is_reached_fr
     const CANDY: Point8 = Point8 { x: 8, y: 3 };
     const BOULDER: Point8 = Point8 { x: 8, y: 4 };
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::WardensHouse).unwrap());
     let build = |boulder: Point8| {
         let sprite = |index, picture_id, position, name| Sprite {
@@ -2566,7 +2566,7 @@ fn a_warp_reached_by_surfing_is_entered_rather_than_leant_on() {
     use crate::pokemon::tile_map::WarpTrigger;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     for (map, to_map) in [
         (Map::SeafoamIslandsB3F, Map::SeafoamIslandsB4F),
         (Map::SeafoamIslandsB4F, Map::SeafoamIslandsB3F),
@@ -2624,7 +2624,7 @@ fn the_ss_anne_bow_is_left_to_the_right() {
     use crate::pokemon::tile_map::WarpTrigger;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::SSAnneBow).unwrap());
     for y in [6, 7] {
         let door = Point8 { x: 13, y };
@@ -2660,7 +2660,7 @@ fn the_rocket_hideout_lift_is_entered_going_down() {
     use crate::pokemon::tile_map::WarpTrigger;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let door = Point8 { x: 24, y: 19 };
     let tm = MetaTileMap::new(&CurrentMap {
         player_position: door,
@@ -2700,7 +2700,7 @@ fn an_impossible_warp_is_one_the_cartridge_really_will_not_open() {
         (Map::SilphCo1F, 16, 10, "`warp_event 16, 10, SILPH_CO_3F, 7 ; inaccessible` — plain floor"),
     ];
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let mut found: Vec<(Map, u8, u8)> = vec![];
     for map in Map::iter() {
         let Ok(metadata) = mmu.read_map_metadata(map) else { continue };
@@ -2820,7 +2820,7 @@ fn a_water_crossing_is_a_row_of_its_own_beside_the_bridge_to_the_same_map() {
     use crate::pokemon::tile::MetaTile;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::Route24).expect("Route 24's header"));
     let route_24 = |can_surf: bool| {
         let mut map = MetaTileMap::new(&CurrentMap {
@@ -2869,7 +2869,7 @@ fn a_trainer_on_open_water_is_a_row_once_surf_is_up() {
     use crate::pokemon::tile::MetaTile;
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let metadata = Arc::new(mmu.read_map_metadata(Map::Route20).expect("Route 20's header"));
     // Swimmer 1 where the cartridge puts him, and the player out on the water a crossing leaves it on.
     let route_20 = |can_surf: bool| {
@@ -2918,7 +2918,7 @@ fn a_duplicate_map_is_not_a_coverage_gap() {
     use crate::pokemon::map_metadata::MapMetadataReader;
     use strum::IntoEnumIterator;
 
-    let mmu = gb::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(crate::pokemon::roms::POKERED).unwrap();
     let mut targeted: std::collections::BTreeSet<Map> = Default::default();
     let mut readable: Vec<Map> = vec![];
     for map in Map::iter() {
@@ -2964,7 +2964,7 @@ fn a_text_is_read_to_its_last_letter() {
     for quarter_frames in 0..12u64 {
         let mut fixture = TestFixture::new(AFTER_THE_BADGE, Duration::from_secs(60),
             vec![PolicyStep::Interact(MapSprite::VERMILIONGYM_GYM_GUIDE); 4]);
-        fixture.gb.run(gb::cycles::MachineCycles::from_t(70_224 * quarter_frames / 4));
+        fixture.gb.run(gbc::cycles::MachineCycles::from_t(70_224 * quarter_frames / 4));
         let mut read = 0;
         while read < 4 {
             fixture.step();
@@ -2992,7 +2992,7 @@ fn a_mart_greeting_is_read_to_its_last_letter() {
             PolicyStep::Interact(MapSprite::VIRIDIANMART_CLERK),
             PolicyStep::BuyFromMart { map: Map::ViridianMart, item: BagItem::new(ItemId::PokeBall, 1) },
         ]);
-        fixture.gb.run(gb::cycles::MachineCycles::from_t(70_224 * quarter_frames / 4));
+        fixture.gb.run(gbc::cycles::MachineCycles::from_t(70_224 * quarter_frames / 4));
         let mut greeted = None;
         while greeted.is_none() {
             fixture.step();

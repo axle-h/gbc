@@ -54,8 +54,8 @@ The repository was cleaned up deliberately and it is worth keeping that way. Fiv
 
 | Doc | Read before |
 |---|---|
-| [emulator-core](docs/emulator-core.md) | `gb/src/{mmu,mbc,ppu,savestate,schedule,cycles,game_boy}.rs`, adding or reordering a serialised field, adding a file to `poke-agent/src/pokemon/data/` |
-| [emulator-performance](docs/emulator-performance.md) | optimising `gb/src/{ppu,core,opcode,mmu}.rs` or `gb/src/audio/`, or building a rig to measure them |
+| [emulator-core](docs/emulator-core.md) | `gbc/src/{mmu,mbc,ppu,savestate,schedule,cycles,game_boy}.rs`, adding or reordering a serialised field, adding a file to `poke-agent/src/pokemon/data/` |
+| [emulator-performance](docs/emulator-performance.md) | optimising `gbc/src/{ppu,core,opcode,mmu}.rs` or `gbc/src/audio/`, or building a rig to measure them |
 | [pokemon-agent](docs/pokemon-agent.md) | `poke-agent/src/pokemon/{agent,policy,text,tile_map,actions}.rs`, `AgentEvent` or any `Display` it goes through, the SPA's `useEventStream.ts` |
 | [llm-turn-loop](docs/llm-turn-loop.md) | anything under `poke-agent/src/llm/`, `poke-agent/src/pokemon/llm_policy.rs`, any change to what the model is sent |
 | [web-streams](docs/web-streams.md) | `poke-agent-web/src/web/{video,audio}*`, the SPA's `{stream,video,audio}.ts` |

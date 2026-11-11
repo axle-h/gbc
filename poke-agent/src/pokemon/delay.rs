@@ -1,5 +1,5 @@
 use std::time::Duration;
-use gb::cycles::MachineCycles;
+use gbc::cycles::MachineCycles;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct DelayContext {

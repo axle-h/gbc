@@ -1,11 +1,11 @@
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::symbols::{DmgPointer, DmgPointerRead};
 use crate::pokemon::move_name::{PokemonMove, PokemonMoveName};
 use crate::pokemon::party::PokemonParty;
 use crate::pokemon::pokemon::{Pokemon, PokemonStats, PokemonType};
 use crate::pokemon::species::PokemonSpecies;
 use crate::pokemon::symbols::pokered_symbols;
-use gb::ram::{RAM, ROM};
+use gbc::ram::{RAM, ROM};
 
 pub use poke_core::party::PokemonBlockAddresses;
 
@@ -286,7 +286,7 @@ pub fn reverse_bcd(mut value: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use gb::roms::blargg_cpu::ROM;
+    use crate::pokemon::roms::POKERED as ROM;
     use crate::pokemon::*;
     use crate::pokemon::encoding::reverse_bcd;
 

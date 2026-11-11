@@ -1,10 +1,10 @@
 //! The bag from the start menu's `ITEM` row, against the cartridge: a toss, and a Potion used on a
 //! hurt mon, with the whole screen compared wherever both are waiting for a button.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::bag::BagItem;
 use poke_core::move_name::PokemonMoveName;
 use poke_core::species::PokemonSpecies;

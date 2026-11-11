@@ -52,8 +52,8 @@ WORKDIR /src
 # Only what the compile reads, so a doc edit does not invalidate this layer. The two SDL crates are
 # never built, but their real manifests keep `Cargo.lock` exact and stub `main.rs`es give them targets.
 COPY Cargo.toml Cargo.lock ./
-COPY gb/Cargo.toml ./gb/
-COPY gb/src/ ./gb/src/
+COPY gbc/Cargo.toml ./gbc/
+COPY gbc/src/ ./gbc/src/
 COPY poke-core/Cargo.toml poke-core/build.rs ./poke-core/
 COPY poke-core/build/ ./poke-core/build/
 COPY poke-core/src/ ./poke-core/src/

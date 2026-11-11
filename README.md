@@ -23,7 +23,7 @@ Then open <http://localhost:8080> and watch it play.
 
 **The emulator.** Blargg's `cpu_instrs`, `dmg_sound` and `instr_timing`; `dmg-acid2` and `cgb-acid2`;
 27 of mooneye's 28 MBC test ROMs, the exception being MBC1 multicart. Six memory bank controllers
-with the MBC3 real-time clock, and a mapper `gb` cannot emulate fails with a typed error rather than
+with the MBC3 real-time clock, and a mapper `gbc` cannot emulate fails with a typed error rather than
 quietly running as something else. M-cycle memory timing and the DMG OAM corruption bug are not
 modelled.
 
@@ -284,23 +284,23 @@ an `env!()` would put it in the cargo layer's inputs. `k8s/` has manifests for k
 ## The crates
 
 ```
-gb/               the emulator, as a library: CPU, PPU, APU, MBCs, save states, the test ROMs
+gbc/              the emulator, as a library: CPU, PPU, APU, MBCs, save states, the test ROMs
 poke-core/        Pokémon Red as data: species, moves, items, maps, pictures and text, from its source
 pokered/          Pokémon Red recreated natively, on `poke-core` alone; in progress
 poke-agent/       the Pokémon layer — agent, policies, LLM turn loop, the run directory
 poke-agent-web/   the axum server, the video and audio codecs, and the SPA
 poke-agent-sdl/   the desktop window
 pokered-sdl/      the native game in a window, from the keyboard
-vendor/           pokered, the disassembly, as a submodule; Blip_Buffer's C++, for golden vectors
+vendor/           pokered, the disassembly, as a submodule
 ```
 
-`gb`, `poke-core` and `pokered` ← `poke-agent` ← the two binaries, `poke-core` ← `pokered` ←
-`pokered-sdl`, and nothing else: neither `poke-core` nor `pokered` knows about `gb`. `poke-agent` holds
+`gbc`, `poke-core` and `pokered` ← `poke-agent` ← the two binaries, `poke-core` ← `pokered` ←
+`pokered-sdl`, and nothing else: neither `poke-core` nor `pokered` knows about `gbc`. `poke-agent` holds
 the lockstep tests and harvesters that run the two side by side. Each crate has one feature, `slow-tests`.
 
 | Concern | Choice | Reason |
 |---|---|---|
-| Audio resampling | `gb/src/audio/blip/`, no dependency | A port of blargg's Blip_Buffer. Band-limited *step* synthesis rather than sinc resampling: the APU reports amplitude transitions and they go straight into a buffer already at the output rate. 8 output samples of latency, no FFT, no crates |
+| Audio resampling | `gbc/src/audio/resampler/`, no dependency | Band-limited *step* synthesis rather than sinc resampling: the APU reports amplitude transitions and each goes straight into a buffer already at the output rate as a 16-tap windowed-sinc step. 7 output samples of latency, no FFT, no crates |
 | Save state format | labelled sections | `"GBST" \| version \| lz4 { [label][len][payload] }`. Unknown sections are skipped and missing ones are not errors, so adding one is free — CGB support doubled VRAM and quadrupled WRAM at the cost of zero fixture regeneration |
 | Symbol codegen | `poke-agent/build.rs` + `pokered.sym` | Every RAM/ROM symbol becomes a typed pointer constant, so an address that moves upstream is a compile error |
 | Audio transport | raw Opus over chunked binary framing | No container and no muxer: WebCodecs takes bare packets, and an `OpusHead` would put the decoder into Ogg mode. Not deflated either, at +16.6% measured |
@@ -324,12 +324,12 @@ recipe.
 
 ## A note on licences
 
-There is no top-level `LICENSE` here yet. If one is added, the constraint to check first is
-`gb/src/audio/blip/`: it is a translation of blargg's Blip_Buffer 0.4.0, which is LGPL 2.1+. The
-original C++ and its licence are vendored under `vendor/Blip_Buffer/`.
+There is no top-level `LICENSE` here yet. `gbc` is MIT OR Apache-2.0, with both texts in `gbc/`.
+Its test ROMs under `gbc/src/roms/` are left out of the published crate; all but `workload/` are
+third-party.
 
-The other two constrain nothing: `opus-rs` is BSD-3-Clause, a Rust port of libopus, which is BSD-3
-itself, and `rhai` is MIT OR Apache-2.0. Both are named because this paragraph is the list, and a
+Two dependencies are worth naming, and neither constrains anything: `opus-rs` is BSD-3-Clause, a
+Rust port of libopus, which is BSD-3 itself, and `rhai` is MIT OR Apache-2.0. Both are named because this paragraph is the list, and a
 dependency absent from it is one nobody checked. Nor does the desktop window's
 `AdwaitaMono-Symbols.ttf`, five glyphs Roboto lacks cut from Adwaita Mono, which is SIL OFL 1.1 with
 no reserved name; its licence sits beside it.

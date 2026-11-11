@@ -3,10 +3,10 @@
 //! The cartridge runs twice: once alone for its random bytes, since the recreation draws a turn's
 //! bytes before it shows the turn, and once beside the recreation, compared at every poll.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::{RAM, ROM};
 use poke_core::item::ItemId;
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;

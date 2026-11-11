@@ -2,8 +2,8 @@
 //! and a status line across the top, the emulated screen left of the native one, each under its
 //! title and the tour's standing on it, and the log beneath.
 
-use gb::model::Model;
-use gb::ppu::{LCD_HEIGHT, LCD_WIDTH};
+use gbc::model::Model;
+use gbc::ppu::{LCD_HEIGHT, LCD_WIDTH};
 use pokered::gfx::colour::ColourMode;
 use crate::sdl::font::Text;
 use crate::sdl::games::{Games, Side};

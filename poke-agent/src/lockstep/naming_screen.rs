@@ -4,9 +4,9 @@
 //! first entry is `NEW NAME`. Then a nickname's, the Charmander ball's in Oak's lab, whose icon
 //! bobs in OAM.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
 use poke_core::rom_gfx::TILE_BYTES;
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;

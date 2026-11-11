@@ -2,7 +2,7 @@
 //! front of the player, sprites in each other's way, an NPC's move, and which VRAM slot each
 //! map's sprites draw from.
 
-use gb::ram::RAM;
+use gbc::ram::RAM;
 use poke_core::map::Map;
 use poke_core::map_header::{MapHeader, TileSetId};
 use poke_core::map_objects::MapObjects;

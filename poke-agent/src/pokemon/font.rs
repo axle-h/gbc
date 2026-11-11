@@ -1,4 +1,4 @@
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::symbols::pokered_symbols;
 pub use poke_core::font::*;
 

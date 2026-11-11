@@ -137,7 +137,7 @@ pub trait Policy {
     }
 
     /// Raw button presses for the agent to deliver at the top of its next tick.
-    fn take_manual_input(&mut self) -> Vec<gb::joypad::JoypadButton> {
+    fn take_manual_input(&mut self) -> Vec<gbc::joypad::JoypadButton> {
         Vec::new()
     }
 
@@ -855,7 +855,7 @@ pub enum FieldMove {
     /// Use bag `item` on `target` from the overworld.
     UseBagItem { item: ItemId, target: crate::pokemon::postgame::items::UseTarget },
     /// Shove the boulder at `boulder` one tile in `dir`; Strength must be armed.
-    PushBoulder { boulder: poke_core::geometry::Point8, dir: gb::joypad::JoypadButton },
+    PushBoulder { boulder: poke_core::geometry::Point8, dir: gbc::joypad::JoypadButton },
 }
 
 /// One of every [`FieldMove`], aimed at Pallet Town, where most of them can only be refused: each
@@ -912,7 +912,7 @@ pub(crate) fn one_of_every_field_move() -> Vec<FieldMove> {
         FieldMove::SellToMart { item: BagItem::new(ItemId::Potion, 1), clerk: (away, PlayerFacingDirection::Up) },
         FieldMove::RedeemPrize { prize: Prize::Abra },
         FieldMove::UseBagItem { item: ItemId::Potion, target: UseTarget::Nothing },
-        FieldMove::PushBoulder { boulder: away, dir: gb::joypad::JoypadButton::Up },
+        FieldMove::PushBoulder { boulder: away, dir: gbc::joypad::JoypadButton::Up },
     ];
     let mut seen: Vec<usize> = every.iter().map(ordinal).collect();
     seen.sort_unstable();

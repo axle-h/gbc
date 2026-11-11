@@ -11,7 +11,7 @@ use pokered::rng::GameRng;
 use pokered::{Game, Input, Pacing};
 
 use crate::pokemon::native::NativeGame;
-use gb::ram::RAM;
+use gbc::ram::RAM;
 use crate::pokemon::symbols::pokered_symbols as sym;
 use crate::pokemon::{GameState, PokemonApi, PokemonApiTrait};
 

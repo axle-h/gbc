@@ -2,8 +2,8 @@
 //! cartridge before both start, the recreation's start taken from it, and the recreation's side of a
 //! talk and of the screen. And both sides' OAM, for any lockstep.
 
-use gb::game_boy::GameBoy;
-use gb::ram::{RAM, ROM};
+use gbc::game_boy::GameBoy;
+use gbc::ram::{RAM, ROM};
 use pokered::mode::Mode;
 use pokered::modes::overworld::Overworld;
 use pokered::rng::GameRng;

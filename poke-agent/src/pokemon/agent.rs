@@ -1,9 +1,9 @@
 use std::collections::VecDeque;
 use std::fmt::Display;
 use std::time::Duration;
-use gb::cycles::MachineCycles;
+use gbc::cycles::MachineCycles;
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::actions::OverworldAction;
 use crate::pokemon::battle::BattleAction;
 use crate::pokemon::{GameState, PokemonApi, PokemonApiTrait};
@@ -695,7 +695,7 @@ impl Display for AgentState {
 
 /// The first party slot holding `species`, read from `wPartySpecies` so it works in a menu.
 fn party_slot_of(api: &PokemonApi<'_>, species: PokemonSpecies) -> Option<u8> {
-    use gb::ram::ROM;
+    use gbc::ram::ROM;
     let count = api.mmu().read_pointer(&pokered_symbols::wPartyCount);
     let base = pokered_symbols::wPartySpecies.address;
     (0..count).find(|i| api.mmu().read(base + *i as u16) == species as u8)
@@ -1791,7 +1791,7 @@ impl PokemonAgent {
 
     /// Advance `gb` by at least `min_cycles`, ticking the state machine every [`AGENT_RESOLUTION`].
     /// Returns what was emulated and the last tick's result.
-    pub fn run(&mut self, gb: &mut gb::game_boy::GameBoy,
+    pub fn run(&mut self, gb: &mut gbc::game_boy::GameBoy,
                cache: &mut crate::pokemon::map_metadata::MapMetadataCache,
                min_cycles: MachineCycles) -> (MachineCycles, Result<(), String>) {
         let mut ran = MachineCycles::ZERO;
@@ -4176,7 +4176,7 @@ mod tests {
     fn the_card_key_forgives_the_doors_that_refused_without_it() {
         use crate::pokemon::map::Map;
         use crate::pokemon::policy::RandomPolicy;
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("data/silph-card-key.bin")).expect("the fixture loads");
         let mut agent = PokemonAgent::new(Box::new(RandomPolicy::seeded(0)));
 
@@ -4204,7 +4204,7 @@ mod tests {
     /// script, where the overworld never polls again: the player is not free there.
     #[test]
     fn nothing_is_asked_of_the_policy_in_the_hall_of_fame() {
-        use gb::ram::ROM;
+        use gbc::ram::ROM;
         struct Counting(std::rc::Rc<std::cell::Cell<u32>>);
         impl Policy for Counting {
             fn name(&self) -> &'static str { "counting" }
@@ -4214,7 +4214,7 @@ mod tests {
             }
             fn pick_battle_action(&mut self, _: &GameState) -> Option<BattleAction> { None }
         }
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("data/hall-of-fame-lead-in.bin")).expect("the fixture loads");
         let teams = gb.core().mmu().read(pokered_symbols::wNumHoFTeams.address);
         let asked = std::rc::Rc::new(std::cell::Cell::new(0));
@@ -4300,7 +4300,7 @@ mod tests {
     fn a_shove_a_battle_interrupts_is_given_up_rather_than_forgotten() {
         use crate::pokemon::encoding::GameMode;
         use crate::pokemon::policy::RandomPolicy;
-        use gb::joypad::JoypadButton;
+        use gbc::joypad::JoypadButton;
         let boulder = Point8 { x: 14, y: 2 };
         let row = MetaTile::BoulderPush { boulder, dir: JoypadButton::Left };
         let mut agent = PokemonAgent::new(Box::new(RandomPolicy::seeded(0)));

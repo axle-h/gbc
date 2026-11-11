@@ -1,9 +1,9 @@
 //! The main menu with no save: the cartridge booted cold and START pressed at the title. With one,
 //! the recreation's CONTINUE opens its save slots, which the cartridge has no counterpart to.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::Mode;

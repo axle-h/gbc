@@ -140,7 +140,7 @@ impl<P: Progress> Policy for Paced<P> {
         self.inner.clear_conversation(run_dir)
     }
 
-    fn take_manual_input(&mut self) -> Vec<gb::joypad::JoypadButton> {
+    fn take_manual_input(&mut self) -> Vec<gbc::joypad::JoypadButton> {
         self.inner.take_manual_input()
     }
 

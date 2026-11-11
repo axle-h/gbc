@@ -8,10 +8,10 @@
 //! cartridge polls every step, so a press there is held until a poll has read it, and a poll in the
 //! recreation is the frame that reads the pad.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use poke_core::map::Map;
 use poke_core::sprite::SpriteFacing;
 use pokered::command::{Command, Decision, Reply};

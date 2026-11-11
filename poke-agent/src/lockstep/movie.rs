@@ -7,9 +7,9 @@
 //! may only grow, a few frames at a time; a frame that matches at no offset is the cartridge part
 //! way through a transfer the recreation makes whole, and only a short run of those is allowed.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
 use poke_core::item::ItemId;
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;
@@ -19,7 +19,7 @@ use pokered::modes::movie::TITLE_VERSION_ROW;
 use pokered::rng::GameRng;
 use pokered::systems::hall_of_fame::{HallOfFameMon, HOF_TEAM_CAPACITY};
 use pokered::{Game, Input, Pacing};
-use gb::ram::ROM;
+use gbc::ram::ROM;
 use crate::pokemon::symbols::pokered_local_labels as local;
 use crate::pokemon::symbols::{pokered_symbols as sym, DmgPointerRead};
 use super::status_screen::{cartridge_until_polling, ours, screen};
@@ -521,7 +521,7 @@ fn the_hall_of_fame_and_the_credits_match_the_cartridge_frame_for_frame() {
     gb.core_mut().mmu_mut().audio_mut().set_output_enabled(false);
     let returned = gb.return_address();
     assert!(returned < 0x4000, "the start menu is called from the home bank");
-    let back = gb::game_boy::Breakpoint::new(0, returned);
+    let back = gbc::game_boy::Breakpoint::new(0, returned);
     super::learn_move::hijack(&mut gb, sym::HallOfFamePC);
 
     let mmu = gb.core().mmu();
@@ -612,7 +612,7 @@ const TRADES: &[u8] = include_bytes!("../pokemon/data/postgame-trades.bin");
 /// the cartridge on `gb`, with `TRADES` loaded, walked in, talked to her and A pressed until
 /// `InternalClockTradeAnim` begins.
 fn cartridge_at_the_trade_movie(mut gb: GameBoy) -> GameBoy {
-    use gb::ram::RAM;
+    use gbc::ram::RAM;
     use poke_core::map::Map;
     gb.core_mut().mmu_mut().audio_mut().set_output_enabled(false);
     let mmu = gb.core_mut().mmu_mut();

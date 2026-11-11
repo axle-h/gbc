@@ -2,8 +2,8 @@
 //! `UsableItems_CloseMenu` item returns to the overworld, and everything else drops back into the
 //! bag, after a party menu for `UsableItems_PartyMenu` and a move menu for the PP items.
 
-use gb::joypad::JoypadButton;
-use gb::mmu::MMU;
+use gbc::joypad::JoypadButton;
+use gbc::mmu::MMU;
 use crate::pokemon::agent::{start_menu_row, AgentState, PokemonAgent, StartMenuRow};
 use crate::pokemon::encoding::GameMode;
 use crate::pokemon::item::ItemId;

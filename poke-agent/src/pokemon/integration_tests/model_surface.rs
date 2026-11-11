@@ -177,7 +177,7 @@ fn row(id: &str) -> Call {
 fn a_pokemon_is_boarded_at_the_day_care_and_collected() {
     use crate::pokemon::move_name::PokemonMoveName as Move;
     const DAYCARE: &[u8] = include_bytes!("../data/postgame-daycare.bin");
-    let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+    let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
     gb.load_state(DAYCARE).expect("the fixture loads");
     let party = crate::pokemon::PokemonApiTrait::game_state(&crate::pokemon::PokemonApi::new(&mut gb))
         .expect("a readable state").pokemon;
@@ -391,7 +391,7 @@ fn talking_to_the_name_rater_changes_nothing() {
 /// The gate flags the quiz machines open, `EVENT_CINNABAR_GYM_GATE0_UNLOCKED` onward.
 fn gates_open(run: &mut LlmRun) -> u8 {
     use crate::pokemon::symbols::{pokered_events::EVENT_CINNABAR_GYM_GATE0_UNLOCKED as FIRST, pokered_symbols};
-    use gb::ram::ROM;
+    use gbc::ram::ROM;
     let mmu = run.fixture().gb.core().mmu();
     (0..7).filter(|gate| {
         let flag = FIRST + gate;
@@ -467,7 +467,7 @@ fn seafoams_boulders_are_pushed_by_their_rows_down_to_articuno() {
     assert!(met, "never reached Articuno");
     // Each boulder that fell is hidden on B3F: (3, 15) is its second object, (8, 14) its third.
     use crate::pokemon::symbols::{pokered_symbols, pokered_toggles};
-    use gb::ram::ROM;
+    use gbc::ram::ROM;
     let mmu = run.fixture().gb.core().mmu();
     for (toggle, at) in [(pokered_toggles::TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2, "(3, 15)"),
                          (pokered_toggles::TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_3, "(8, 14)")] {

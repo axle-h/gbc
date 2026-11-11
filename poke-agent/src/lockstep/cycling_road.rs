@@ -2,9 +2,9 @@
 //! with nothing held, a game continued from a save made there, and a biker's sight. The first two
 //! are compared at every square the player reaches: where, when, and every sprite.
 
-use gb::game_boy::GameBoy;
-use gb::joypad::JoypadButtonState;
-use gb::ram::RAM;
+use gbc::game_boy::GameBoy;
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::RAM;
 use poke_core::map::Map;
 use poke_core::sprite::SpriteFacing;
 use pokered::input::Joypad;

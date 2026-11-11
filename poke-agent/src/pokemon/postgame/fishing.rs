@@ -1,8 +1,8 @@
 //! Fishing: the three rods, the cast driver, and the policy side of a `Fish` step.
 
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
-use gb::mmu::MMU;
+use gbc::joypad::JoypadButton;
+use gbc::mmu::MMU;
 use crate::pokemon::agent::{start_menu_row, AgentEvent, AgentState, OverworldActionAbortedReason, PokemonAgent, StartMenuRow};
 use crate::pokemon::menu::START_MENU_ORIGIN;
 use crate::pokemon::battle::{BattleAction, BattleType};

@@ -1,6 +1,6 @@
 //! Which game the keyboard plays: both at once, or either alone.
 
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use pokered::input::Joypad;
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]

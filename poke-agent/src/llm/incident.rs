@@ -11,7 +11,7 @@ use std::path::PathBuf;
 
 use serde::Serialize;
 
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::llm::compaction;
 use crate::llm::protocol::Message;
 use crate::llm::screenshot;

@@ -27,9 +27,9 @@ use tokio_stream::wrappers::{BroadcastStream, IntervalStream};
 use tokio_stream::{Stream, StreamExt};
 
 use crate::cli::ServePolicy;
-use gb::game_boy::GameBoy;
+use gbc::game_boy::GameBoy;
 use crate::host::{ControlRequest, ControlRequests, EmulatorHost, HostConfig};
-use gb::model::Model;
+use gbc::model::Model;
 use poke_agent::llm::LlmConfig;
 use poke_agent::llm::client::ChatEndpoint;
 use poke_agent::pokemon::policy::{Policy, RandomPolicy};

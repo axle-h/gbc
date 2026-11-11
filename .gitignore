@@ -3,8 +3,6 @@
 **/target/
 .idea/
 .claude/
-# Compiled golden-vector generator (vendor/Blip_Buffer/gen_golden/build.sh builds into target/)
-/vendor/Blip_Buffer/gen_golden/gen_golden
 
 # `web/dist` must exist for the crate to compile, hence the committed `.gitkeep`.
 /poke-agent-web/web/node_modules/

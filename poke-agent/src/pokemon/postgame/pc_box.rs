@@ -1,6 +1,6 @@
 //! Pokémon storage in the PC boxes: reading the open box, and the Bill's PC menu driver.
 
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::agent::{PokemonAgent, Reach};
 use crate::pokemon::move_name::{PokemonMove, PokemonMoveName};
 use crate::pokemon::species::PokemonSpecies;
@@ -8,7 +8,7 @@ use crate::pokemon::status::PokemonStatus;
 use crate::pokemon::strings::PokemonString;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
 use crate::pokemon::{PokemonApi, PokemonApiTrait};
-use gb::ram::ROM;
+use gbc::ram::ROM;
 
 pub const BOX_CAPACITY: usize = 20;
 
@@ -152,7 +152,7 @@ fn party_count(api: &PokemonApi<'_>) -> u8 {
 /// One tick of the box driver: face the PC and press A, pick BILL's PC and the operation, then the
 /// row, YES or the box, and B until the overworld returns. Changing box saves the game.
 pub fn tick(agent: &mut PokemonAgent, api: &mut PokemonApi<'_>, s: PcBoxState) -> Result<(), String> {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
     use crate::pokemon::agent::AgentState;
     use crate::pokemon::encoding::GameMode;
     use crate::pokemon::map_metadata::PlayerFacingDirection;

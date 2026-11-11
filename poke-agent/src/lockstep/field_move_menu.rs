@@ -1,10 +1,10 @@
 //! The submenu a chosen party mon opens: START, `POKéMON`, then a mon. Its shape depends on what
 //! that mon knows, so the fixture's own party decides what is compared.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::Mode;

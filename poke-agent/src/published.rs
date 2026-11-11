@@ -7,7 +7,7 @@ use tokio::sync::broadcast;
 use crate::pokemon::observe::StatusView;
 use crate::run::GameKind;
 use crate::frame::{Encoded, Frame, PIXELS};
-use gb::lcd_palette::LcdColor;
+use gbc::lcd_palette::LcdColor;
 
 /// ~2 s of video at 30 fps.
 const VIDEO_CAPACITY: usize = 64;

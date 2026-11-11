@@ -6,10 +6,10 @@
 
 use std::collections::{BTreeSet, HashMap, HashSet};
 
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use poke_core::map_objects::{MapObjects, ObjectKind};
 use poke_core::pointer::DmgPointer;
-use gb::ram::ROM;
+use gbc::ram::ROM;
 use strum::IntoEnumIterator;
 
 use crate::pokemon::GameState;
@@ -547,7 +547,7 @@ mod tests {
     /// The checklist is the cartridge's own tables, read the way the game reads them.
     #[test]
     fn checklist() {
-        let gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         let list = super::checklist(gb.core().mmu());
 
         assert_eq!(count(&list, |e| matches!(e, Entry::Map(_))), 220, "the sweep's denominator");
@@ -580,7 +580,7 @@ mod tests {
     /// A doorway is one entry however many tiles wide it is, and a door is never also an edge.
     #[test]
     fn doors_and_edges() {
-        let gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         let list = super::checklist(gb.core().mmu());
         let raw: usize = reachable_maps().map(|map| warp_doors(map).len()).sum();
         assert_eq!(raw, 802, "warp events on maps a run can stand on");
@@ -637,7 +637,7 @@ mod tests {
     /// no record of at all.
     #[test]
     fn a_crossing_is_read_from_the_warp_record() {
-        use gb::ram::RAM;
+        use gbc::ram::RAM;
         let mut fixture = TestFixture::new(
             include_bytes!("../pokemon/data/start-of-game-state.bin"), Duration::from_secs(10), vec![]);
         let state = fixture.game_state();
@@ -715,7 +715,7 @@ mod tests {
     /// Elite Four ends holding no flag that says so.
     #[test]
     fn a_trainer_the_game_unbeats_stays_beaten() {
-        use gb::ram::RAM;
+        use gbc::ram::RAM;
         let mut fixture = TestFixture::new(
             include_bytes!("../pokemon/data/start-of-game-state.bin"), Duration::from_secs(10), vec![]);
         let state = fixture.game_state();

@@ -1,10 +1,10 @@
 //! A mart, against the cartridge: the Viridian clerk, a purchase and a sale, with the whole screen
 //! compared wherever both are waiting for a button.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::Mode;

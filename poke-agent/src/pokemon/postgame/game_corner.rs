@@ -1,7 +1,7 @@
 //! The Game Corner economy: the Coin Case, coins, selling to a mart, the prize room and the slots.
 
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::actions::OverworldAction;
 use crate::pokemon::agent::{AgentState, PokemonAgent, Reach};
 use crate::pokemon::encoding::GameMode;
@@ -565,7 +565,7 @@ impl SlotSession {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::mmu::MMU;
+    use gbc::mmu::MMU;
 
     fn rom() -> MMU { MMU::from_rom(crate::pokemon::roms::POKERED).unwrap() }
 

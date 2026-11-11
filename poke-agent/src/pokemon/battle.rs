@@ -1,5 +1,5 @@
-use gb::mmu::MMU;
-use gb::ram::ROM;
+use gbc::mmu::MMU;
+use gbc::ram::ROM;
 use crate::pokemon::move_name::{PokemonMove, PokemonMoveName};
 use crate::pokemon::pokemon::{PokemonStats, PokemonSummary, PokemonType};
 use crate::pokemon::species::PokemonSpecies;

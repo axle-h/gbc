@@ -2,7 +2,7 @@
 //! operation, the item and the quantity, then B until the overworld returns.
 
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::pokemon::agent::{AgentState, PokemonAgent, Reach};
 use crate::pokemon::encoding::GameMode;
 use crate::pokemon::item::ItemId;

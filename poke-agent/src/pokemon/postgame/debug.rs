@@ -5,7 +5,7 @@ use crate::pokemon::party::PokemonParty;
 use crate::pokemon::symbols::{pokered_symbols, DmgPointerRead};
 use crate::pokemon::encoding::PokemonEncoding;
 use crate::pokemon::PokemonApi;
-use gb::ram::{RAM, ROM};
+use gbc::ram::{RAM, ROM};
 
 /// Encode `value` as the game's binary-coded decimal — the inverse of
 /// [`crate::pokemon::encoding::reverse_bcd`].

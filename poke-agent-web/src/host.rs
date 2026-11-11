@@ -2,8 +2,8 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::{Duration, Instant};
 
-use gb::cycles::MachineCycles;
-use gb::model::Model;
+use gbc::cycles::MachineCycles;
+use gbc::model::Model;
 use poke_agent::pokemon::agent::AgentEvent;
 use poke_agent::pokemon::policy::{LLM_POLICY_NAME, Policy};
 use poke_agent::run::moments::{self, Found, Landmarks, Moment, MomentTracker};
@@ -127,7 +127,7 @@ pub struct EmulatorHost {
     encoder: VideoEncoder,
     /// `None` when `HostConfig::audio_bitrate` is, which is the whole of "audio is off".
     audio: Option<AudioEncoder>,
-    /// One read's worth of PCM, sized past the blip buffer's 100 ms so one read empties it.
+    /// One read's worth of PCM, sized past the resampler's 100 ms so one read empties it.
     audio_scratch: Vec<f32>,
     /// Reused so a packet costs one `Arc` and not a `Vec` as well.
     audio_packets: Vec<Arc<[u8]>>,
@@ -669,7 +669,7 @@ impl EmulatorHost {
                 audio.restart();
             }
             // Ahead of the drain rather than after it, so the two throw the same moment away:
-            // `set_output_enabled` clears the blip buffer, and the read below then finds nothing.
+            // `set_output_enabled` clears the resampler, and the read below then finds nothing.
             self.set_audio_output(true);
             while self.console.read_samples(&mut self.audio_scratch) > 0 {}
             return;
@@ -832,7 +832,7 @@ fn event_kind(event: &AgentEvent) -> &'static str {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::game_boy::GameBoy;
+    use gbc::game_boy::GameBoy;
     use poke_agent::pokemon::options::SERVED_OPTIONS;
     use poke_agent::pokemon::policy::RandomPolicy;
     use poke_agent::published::{UiEvent, UiEventBody};

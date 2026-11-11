@@ -1,5 +1,5 @@
-use gb::game_boy::GameBoy;
-use gb::ram::ROM;
+use gbc::game_boy::GameBoy;
+use gbc::ram::ROM;
 use pokered::gfx::colour::{self, ColourMode};
 use pokered::gfx::compose::{HEIGHT, WIDTH};
 use pokered::gfx::layers::{MapLayer, Object};
@@ -196,10 +196,10 @@ fn a_colour_frame_paints_the_cartridge_s_own_colours() {
 }
 
 /// `ColourMode::Gbc` carries its three palettes rather than deriving them, and this is what keeps
-/// them the emulator's: `gb::boot_palette`'s own tables, for this cartridge's title.
+/// them the emulator's: `gbc::boot_palette`'s own tables, for this cartridge's title.
 #[test]
 fn the_colour_palettes_are_the_boot_roms_own() {
-    let boot = gb::boot_palette::for_cartridge(crate::pokemon::roms::POKERED);
+    let boot = gbc::boot_palette::for_cartridge(crate::pokemon::roms::POKERED);
     let colours = |bytes: [u8; 8]| -> [u16; 4] {
         std::array::from_fn(|i| u16::from_le_bytes([bytes[i * 2], bytes[i * 2 + 1]]))
     };

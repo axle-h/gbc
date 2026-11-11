@@ -10,7 +10,7 @@ fn seafoam_articuno_is_reachable_offline() {
     use std::collections::{HashSet, VecDeque};
     use std::sync::Arc;
 
-    let mmu = gb::mmu::MMU::from_rom(roms::POKERED).unwrap();
+    let mmu = gbc::mmu::MMU::from_rom(roms::POKERED).unwrap();
     let build = |map: Map, at: Point8| {
         let metadata = Arc::new(mmu.read_map_metadata(map).unwrap());
         let current = crate::pokemon::map_metadata::CurrentMap {

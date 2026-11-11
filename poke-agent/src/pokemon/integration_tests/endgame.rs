@@ -184,7 +184,7 @@ fn can_grind_for_the_gauntlet() {
 #[cfg(feature = "slow-tests")]
 #[ignore = "probe — run with --ignored --nocapture, see the doc comment"]
 fn probe_button_at_state() {
-    use gb::joypad::JoypadButton;
+    use gbc::joypad::JoypadButton;
     let path = std::env::var("GB_PROBE_STATE").expect("GB_PROBE_STATE");
     let plan = std::env::var("GB_PROBE_BUTTONS").unwrap_or_else(|_| "down:600".into());
     let bytes = std::fs::read(&path).expect("state");
@@ -232,7 +232,7 @@ fn probe_button_at_state() {
 #[ignore = "probe — run with --ignored --nocapture, see the doc comment"]
 fn probe_cinnabar_gates() {
     use crate::pokemon::symbols::{pokered_events, pokered_symbols};
-    use gb::ram::ROM;
+    use gbc::ram::ROM;
     let path = std::env::var("GB_PROBE_STATE").expect("GB_PROBE_STATE");
     let bytes = std::fs::read(&path).expect("state");
     let mut fixture = TestFixture::new(&bytes, Duration::from_secs(1), Vec::new());

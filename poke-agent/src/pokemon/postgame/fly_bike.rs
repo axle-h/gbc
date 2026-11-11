@@ -1,7 +1,7 @@
 //! Fly, the Bicycle, and Cycling Road.
 
-use gb::joypad::JoypadButton;
-use gb::mmu::MMU;
+use gbc::joypad::JoypadButton;
+use gbc::mmu::MMU;
 use crate::pokemon::agent::{AgentState, PokemonAgent};
 use crate::pokemon::encoding::{GameMode, PokemonEncoding};
 use crate::pokemon::font::FontAware;
@@ -320,7 +320,7 @@ impl PolicyStep {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gb::ram::RAM;
+    use gbc::ram::RAM;
 
     /// The town-map coordinate table the Fly driver steers by matches the ROM, and no two agree.
     #[test]

@@ -2,10 +2,10 @@
 //! pages, and back through the party menu to the start menu. The recreation runs the same presses
 //! through its own start menu, so `PokemonMenu` is compared as well as the two pages.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
-use gb::ram::ROM;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
+use gbc::ram::ROM;
 use poke_core::move_name::PokemonMoveName;
 use poke_core::species::PokemonSpecies;
 use pokered::command::Decision;

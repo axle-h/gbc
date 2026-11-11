@@ -13,8 +13,8 @@
 //! caught between two, one of a single shade is the screen blanked while it loads, and one held only while a
 //! routine in `LOADING` runs is the cartridge moving data the recreation leaves out.
 
-use gb::game_boy::GameBoy;
-use gb::ram::ROM;
+use gbc::game_boy::GameBoy;
+use gbc::ram::ROM;
 use poke_core::move_name::PokemonMoveName;
 use poke_core::species::PokemonSpecies;
 use pokered::gfx::layers::{MapLayer, Object};

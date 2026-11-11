@@ -1,9 +1,9 @@
 //! The Pokédex the start menu's first row opens: the list of numbers, the menu on its lower right,
 //! a data page and the nest map, all drawn from the fixture's own seen and owned flags.
 
-use gb::cycles::MachineCycles;
-use gb::game_boy::{GameBoy, Stop};
-use gb::joypad::JoypadButtonState;
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{GameBoy, Stop};
+use gbc::joypad::JoypadButtonState;
 use pokered::command::Decision;
 use pokered::input::Joypad;
 use pokered::mode::{Mode, Status};

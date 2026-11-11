@@ -8,7 +8,6 @@ target/
 .gitmodules
 runs/
 docs/
-vendor/Blip_Buffer/
 .github/
 *.md
 Dockerfile

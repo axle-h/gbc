@@ -1,7 +1,7 @@
 //! End-to-end tests that boot the emulator and drive the real agent.
 
 use std::time::Duration;
-use gb::cycles::MachineCycles;
+use gbc::cycles::MachineCycles;
 use crate::pokemon::policy::{DeterministicPolicy, PartyRef, PolicyStep};
 use crate::pokemon::*;
 use crate::pokemon::agent::{AgentEvent, OverworldActionAbortedReason, PokemonAgent, AGENT_RESOLUTION,
@@ -10,7 +10,7 @@ use crate::pokemon::battle::BattleType;
 use crate::pokemon::tile::JumpDirection;
 use crate::pokemon::tile::MetaTile;
 use crate::pokemon::map::MapSprite;
-use gb::ram::{RAM, ROM};
+use gbc::ram::{RAM, ROM};
 
 /// Each named cell as two tests, one per battle-animation setting: animations stretch every gap a
 /// battle bound measures, and only a served run plays with them on.

@@ -384,7 +384,7 @@ mod tests {
 
     #[test]
     fn the_rom_cross_check_finds_a_door_that_was_never_offered() {
-        let gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         let mmu = gb.core().mmu();
 
         // Oak's lab was offered and nothing else was.
@@ -1505,7 +1505,7 @@ fn walk_from(start: &Start, minutes: u64, patience: usize, wall_secs: u64) -> Wa
 }
 
 pub fn rom_cross_check(
-    mmu: &gb::mmu::MMU,
+    mmu: &gbc::mmu::MMU,
     offered: &std::collections::BTreeSet<String>,
 ) -> String {
     use crate::pokemon::map::Map;

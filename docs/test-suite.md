@@ -24,7 +24,7 @@ cargo test --release --workspace --features slow-tests -- probe_ --ignored --noc
 ```
 
 - Always `--release`: these tests emulate every frame. The dev profile works — `Cargo.toml` gives
-  `gb` and `poke-agent` `opt-level = 3` and every dependency `opt-level = 2`, without which the
+  `gbc` and `poke-agent` `opt-level = 3` and every dependency `opt-level = 2`, without which the
   agent's frames overflow the harness's stack and the mock endpoint is slow enough to change what
   the emulator has done by the time a turn is answered.
 - Agent and policy tracing goes to stdout, so add `--nocapture` when you want it.
@@ -87,7 +87,7 @@ cargo test --release --workspace --features slow-tests -- probe_ --ignored --noc
 - A phase that sticks saves where it stuck to `$TMPDIR/<name>-stuck.bin`, and `dump_fixture_states`
   reads any state named in `GB_DUMP_STATES` (`:`-separated) instead of the committed chain: map,
   party, bag, dex count and the current box, which is where a re-ordered route's answers are.
-- `every_committed_fixture_decodes` (default tier, in `gb`) loads all of them, so a save-state layout
+- `every_committed_fixture_decodes` (default tier, in `poke-agent`) loads all of them, so a save-state layout
   break fails in two seconds rather than an hour into `slow-tests`.
 
 ## Writing a test
@@ -106,5 +106,6 @@ cargo test --release --workspace --features slow-tests -- probe_ --ignored --noc
   name filters. The thirteen `completion_phase_*` tests were ignored on the grounds that they are
   slow, and three of them sat red on main for days with every gate green. Gate on the module's
   feature instead, as `completion_run` and `soak` do.
-- `vendor/Blip_Buffer/gen_golden/build.sh` regenerates the resampler's golden vectors from the
-  vendored C++, after `capture_golden_input` if the input needs refreshing.
+- `gbc`'s tests run on its own test ROMs, never Pokémon Red; a test of the emulator against the
+  cartridge goes in `poke-agent/src/emulator_tests.rs`. `gbc/src/roms/workload/` is our own
+  cartridge, and a test breaks on its fixed addresses, so rebuild it with its `build.sh`.

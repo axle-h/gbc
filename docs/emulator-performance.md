@@ -1,10 +1,11 @@
 # Emulator performance
 
-Read before optimising `gb/src/{ppu,core,opcode,mmu}.rs` or `gb/src/audio/`, and before building a
+Read before optimising `gbc/src/{ppu,core,opcode,mmu}.rs` or `gbc/src/audio/`, and before building a
 rig to measure them — one was built and deleted, because the yardstick is a game *standing still*
 and that profiles the same as one walking to within two points.
 
-`game_boy::tests::bench_core_throughput` is the yardstick. Absolute numbers move with the machine;
+`poke-agent`'s `emulator_tests::bench_pokemon_red_throughput` is the yardstick; `gbc`'s own
+`game_boy::tests::bench_core_throughput` runs its test ROMs. Absolute numbers move with the machine;
 the ratios are the point. Thin LTO and `codegen-units = 1` are the only build knobs that make
 everything faster at once, and `-C target-cpu=native` on top of them measured *slower*.
 
@@ -14,9 +15,9 @@ everything faster at once, and `-C target-cpu=native` on top of them measured *s
   in the working tree buys a full rebuild on the next ordinary test run.
   ```bash
   CARGO_TARGET_DIR=/tmp/prof CARGO_PROFILE_RELEASE_DEBUG=1 RUSTFLAGS="-C force-frame-pointers=yes" \
-    cargo test --release -p gb --features slow-tests --no-run
-  BENCH_FRAMES=60000 BENCH_ONLY=pokemon perf record -F 999 -g --call-graph fp -- \
-    /tmp/prof/release/deps/gb-<hash> --exact --nocapture bench_core_throughput
+    cargo test --release -p poke-agent --features slow-tests --lib --no-run
+  BENCH_FRAMES=60000 perf record -F 999 -g --call-graph fp -- \
+    /tmp/prof/release/deps/poke_agent-<hash> --exact --nocapture emulator_tests::bench_pokemon_red_throughput
   ```
 - `perf report` never finishes on this binary with inline resolution on. Always `--no-inline`, prefer
   `-g none`, and use `--sort srcfile`; `--sort srcline` is unusably slow, so reach for

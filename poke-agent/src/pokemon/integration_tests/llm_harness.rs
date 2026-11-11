@@ -9,7 +9,7 @@ use axum::http::{HeaderMap, StatusCode, header};
 use axum::response::{IntoResponse, Response};
 use axum::routing::post;
 
-use gb::cycles::MachineCycles;
+use gbc::cycles::MachineCycles;
 use crate::llm::battle_script::BattleScript;
 use crate::llm::client::{OpenAiClient, RetryPolicy};
 use crate::llm::config::LlmConfig;

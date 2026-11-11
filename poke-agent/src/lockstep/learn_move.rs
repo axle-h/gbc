@@ -4,8 +4,8 @@
 //! `wStringBuffer` set as `LearnMoveFromLevelUp` sets them. The recreation starts from the same
 //! party over the same tile map, and both are compared at every point either waits for a button.
 
-use gb::game_boy::GameBoy;
-use gb::ram::{RAM, ROM};
+use gbc::game_boy::GameBoy;
+use gbc::ram::{RAM, ROM};
 use poke_core::move_name::PokemonMoveName;
 use pokered::command::Decision;
 use pokered::input::Joypad;

@@ -2,8 +2,8 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
-use gb::mmu::MMU;
+use gbc::joypad::JoypadButton;
+use gbc::mmu::MMU;
 use crate::pokemon::bag::BagReader;
 use crate::pokemon::map::Map;
 use crate::pokemon::map_header::{MapConnectionDirection, MapHeader, MapHeaderReader, TileSetId};
@@ -22,7 +22,7 @@ pub fn facing_button(facing: PlayerFacingDirection) -> JoypadButton {
         PlayerFacingDirection::Right => JoypadButton::Right,
     }
 }
-use gb::ram::ROM;
+use gbc::ram::ROM;
 
 #[derive(Clone)]
 pub struct MapMetadata {
@@ -1255,7 +1255,7 @@ mod test {
     /// from `wOverworldMap`: without the Card Key a shut door is a wall, not a way west.
     #[test]
     fn a_silph_door_the_load_code_shut_is_a_wall_without_the_card_key() {
-        let mut gb = gb::game_boy::GameBoy::dmg(POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(POKERED);
         gb.load_state(include_bytes!("data/soak-silph-co.bin")).expect("the fixture loads");
         let mut current = gb.core().mmu().read_current_map().unwrap();
         assert_eq!(current.metadata.map, Map::SilphCo3F);

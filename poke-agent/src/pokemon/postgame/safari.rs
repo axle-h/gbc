@@ -1,7 +1,7 @@
 //! The Safari Zone: the step budget, the odds, and the hunt.
 
 use poke_core::geometry::Point8;
-use gb::mmu::MMU;
+use gbc::mmu::MMU;
 use crate::pokemon::actions::OverworldAction;
 use crate::pokemon::battle::{BattleAction, BattleType};
 use crate::pokemon::map::Map;
@@ -12,7 +12,7 @@ use crate::pokemon::tile::MetaTile;
 use crate::pokemon::tile_map::MetaTileMap;
 use crate::pokemon::world_graph::WorldGraph;
 use crate::pokemon::GameState;
-use gb::ram::ROM;
+use gbc::ram::ROM;
 
 /// A Safari trip, `None` in [`GameState::safari`] whenever the player is not on the clock.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

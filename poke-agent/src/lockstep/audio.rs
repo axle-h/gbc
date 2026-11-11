@@ -1,6 +1,6 @@
-use gb::cycles::MachineCycles;
-use gb::game_boy::{Breakpoint, GameBoy, Stop};
-use gb::ram::{RAM, ROM};
+use gbc::cycles::MachineCycles;
+use gbc::game_boy::{Breakpoint, GameBoy, Stop};
+use gbc::ram::{RAM, ROM};
 use pokered::audio::data::{sounds, SoundId};
 use pokered::audio::engine::{encode_writes, AudioEngine};
 use pokered::audio::{Voices, Write};

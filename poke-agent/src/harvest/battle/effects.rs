@@ -1,6 +1,6 @@
 //! `pokered/fixtures/battle/`: the move effects, entered at their own labels with `hWhoseTurn` set.
 
-use gb::ram::RAM;
+use gbc::ram::RAM;
 use pokered::systems::battle::effects::MimicMenu;
 use pokered::systems::battle::{Arena, Side};
 use serde_json::{json, Value};

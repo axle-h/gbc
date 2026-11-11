@@ -1,7 +1,7 @@
 use serde_json::{Value, json};
 
 use poke_core::geometry::Point8;
-use gb::joypad::JoypadButton;
+use gbc::joypad::JoypadButton;
 use crate::llm::prompt::ApiSnapshot;
 use crate::llm::files::{self, FileCall, FileRead, Node};
 use crate::llm::protocol::{ToolCall, ToolSpec};
@@ -2220,14 +2220,14 @@ mod tests {
 
     /// Oak's lab after the starter: a party of one, an ordinary bag, and no trees.
     fn fixture_state() -> GameState {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/oaks-lab-just-got-squirtle.bin"))
             .expect("the committed fixture loads");
         { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }.expect("the fixture has a readable state")
     }
 
     fn state_from(fixture: &[u8]) -> GameState {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(fixture).expect("the committed fixture loads");
         { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("the fixture has a readable state")
@@ -2607,7 +2607,7 @@ mod tests {
     /// Two menu rows may never share an id.
     #[test]
     fn no_two_menu_rows_can_share_an_id() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/gym-trash-solved.bin")).expect("the fixture loads");
         let state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("a readable state");
@@ -2674,7 +2674,7 @@ mod tests {
     /// its connection strips.
     #[test]
     fn a_landing_coordinate_is_where_the_destination_picture_puts_it() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/pallet-town-state.bin")).expect("the committed fixture loads");
         let pallet = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }.expect("readable");
         let lab_door = crate::pokemon::observe::map_view(&pallet).warps.into_iter()
@@ -2689,7 +2689,7 @@ mod tests {
     /// person is spoken to, whatever either is called.
     #[test]
     fn a_sprite_row_is_verbed_by_its_picture() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/mt-moon.bin")).expect("the committed fixture loads");
         let state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }.expect("readable");
         let menu = overworld_menu(&state, None);
@@ -2704,7 +2704,7 @@ mod tests {
     fn the_bag_file_counts_every_slot_the_game_counts() {
         use crate::pokemon::PokemonApiTrait;
         use crate::pokemon::symbols::DmgPointerRead;
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/post-ss-anne.bin")).expect("the committed fixture loads");
         let api = crate::pokemon::PokemonApi::new(&mut gb);
         let state = api.game_state().expect("readable");
@@ -3852,7 +3852,7 @@ mod tests {
 
         // Route 11: outdoors, in `BikeRidingTilesets`, with the Bicycle in the bag.
         let outdoors = {
-            let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+            let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
             gb.load_state(include_bytes!("../pokemon/data/route-11-youngster-on-the-pacing-tile.bin"))
                 .expect("the committed fixture loads");
             { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
@@ -3876,7 +3876,7 @@ mod tests {
     /// `ItemUseBicycle` turns water down before it asks whether the map allows cycling.
     #[test]
     fn the_bicycle_is_refused_while_surfing() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/route21-islands.bin")).expect("the committed fixture loads");
         let state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
             .expect("a readable state");
@@ -4070,7 +4070,7 @@ mod tests {
     /// A tree nobody can cut is not an action.
     #[test]
     fn a_cut_tree_is_not_offered_to_a_party_that_cannot_cut() {
-        let mut gb = gb::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
+        let mut gb = gbc::game_boy::GameBoy::dmg(crate::pokemon::roms::POKERED);
         gb.load_state(include_bytes!("../pokemon/data/at-vermilion.bin"))
             .expect("the committed fixture loads");
         let mut state = { use crate::pokemon::PokemonApiTrait; crate::pokemon::PokemonApi::new(&mut gb).game_state() }
