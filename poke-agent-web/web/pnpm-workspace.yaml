@@ -1,4 +1,0 @@
-# `web/` is one package; pnpm reads its settings only from this file.
-# Refuse versions younger than 3 days. Enforced under `--frozen-lockfile` too, so regenerate
-# `pnpm-lock.yaml` whenever this changes or the container build fails.
-minimumReleaseAge: 4320

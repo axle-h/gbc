@@ -4,8 +4,9 @@ Read before optimising `gbc/src/{ppu,core,opcode,mmu}.rs` or `gbc/src/audio/`, a
 rig to measure them — one was built and deleted, because the yardstick is a game *standing still*
 and that profiles the same as one walking to within two points.
 
-`poke-agent`'s `emulator_tests::bench_pokemon_red_throughput` is the yardstick; `gbc`'s own
-`game_boy::tests::bench_core_throughput` runs its test ROMs. Absolute numbers move with the machine;
+The yardstick is `emulator_tests::bench_pokemon_red_throughput` in `axle-h/poke-agent`, run against
+this checkout through a `[patch.crates-io]`; `game_boy::tests::bench_core_throughput` here runs the
+test ROMs. Absolute numbers move with the machine;
 the ratios are the point. Thin LTO and `codegen-units = 1` are the only build knobs that make
 everything faster at once, and `-C target-cpu=native` on top of them measured *slower*.
 

@@ -1,8 +1,7 @@
 # Emulator core
 
 Read before touching `gbc/src/{mmu,mbc,ppu,savestate,schedule,cycles,game_boy}.rs`, before adding or
-reordering a serialised field, and before adding a file to `poke-agent/src/pokemon/data/`. The full
-arguments are in the module docs named below; this is the list of what not to break.
+reordering a serialised field. The full arguments are in the module docs named below; this is the list of what not to break.
 
 ## Not modelled
 
@@ -14,9 +13,6 @@ arguments are in the module docs named below; this is the list of what not to br
 
 - `gbc/src/sgb.rs` colours the PPU's finished DMG frame by reading its greys back as shades, so the
   DMG ramp in `DMGColor::to_lcd` is the SGB's input as well as the committed screenshots'.
-- Every fixture is a DMG capture: loaded on an SGB it keeps whatever the console held and reads
-  `wOnSGB` and `wDefaultPaletteCommand` clear, so a lockstep boots to `LoadSGB` first and sets both
-  (`poke-agent/src/lockstep/mod.rs` `on_sgb`).
 
 ## Mappers
 
@@ -31,22 +27,19 @@ arguments are in the module docs named below; this is the list of what not to br
   means appending it inside its section and bumping that section's version. Never reorder or
   retype a shipped value: bincode is positional. Before writing a legacy struct, check whether the
   boundary can be re-cut instead; that is how CGB support cost zero fixture regeneration.
-- A state carries its screen as a PNG for tools that never run it: the `screen` section of a `.gbst`
-  (`savestate::screenshot`), a `screen` stream of a `.pkrd` (`pokered::saved_screenshot`). No load
-  reads either, so the LCD stays blank until the next frame is drawn.
-- `every_committed_fixture_decodes` (`poke-agent/src/emulator_tests.rs`) loads every `.bin` in `poke-agent/src/pokemon/data/`, so a
-  `.bin` there must be a save state. Other binary fixtures go elsewhere (`poke-core/src/data/gfx/`), and
-  `poke-agent-sdl/pokemon-red.sav` is raw SRAM rather than a state.
-- A DMG state restored under `GB_HARDWARE=cgb` must not blank the screen. Every fixture and every
-  deployed `state.gbst` is a DMG capture whose CGB palette section is all-white, and compatibility
+- A state carries its screen as a PNG for tools that never run it, the `screen` section
+  (`savestate::screenshot`). No load reads it, so the LCD stays blank until the next frame is drawn.
+- Users keep save states for a long time (`axle-h/poke-agent` commits dozens as test fixtures), so a
+  format break costs every one of them a regeneration.
+- A DMG state restored on a CGB must not blank the screen. A DMG capture's CGB palette section is
+  all-white, and compatibility
   mode leaves the palette registers unmapped, so `MMU::read_sections` re-installs the boot palette
   last. `a_dmg_save_state_does_not_blank_a_compatibility_mode_screen` guards it.
 - The `apu` section and `Audio`'s `PartialEq` both write the channels *settled*. The four channels
   run up to a deadline behind the CPU while the output side is gated, so a save state taken mid-batch
   would be of a machine that never existed; anything reading the whole APU through a `&self` has to
   go through `Audio::settled`. `Schedule` is derived and not serialised at all, only `MMU::now` is,
-  and the output sample rate and emulation speed are applied rather than stored (see
-  [web-streams](web-streams.md)).
+  and the output sample rate and emulation speed are applied rather than stored.
 
 ## Performance
 
@@ -57,5 +50,3 @@ arguments are in the module docs named below; this is the list of what not to br
 - `MachineCycles::to_duration` and `from_duration` use `u128`. The `u64` version overflowed after
   ~73 minutes of emulated time, silently, and everything reporting emulated time went through it.
   `cycles::tests::to_duration_survives_a_long_run` pins 24 h.
-- `AGENT_RESOLUTION` (20 ms, in `poke-agent`) is empirical: longer and the player overshoots on the
-  overworld, shorter and the game does not settle between agent steps.

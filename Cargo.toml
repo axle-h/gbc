@@ -1,22 +1,11 @@
 [workspace]
-members = ["gbc", "poke-core", "pokered", "pokered-sdl", "poke-agent", "poke-agent-sdl", "poke-agent-web"]
+members = ["gbc"]
 resolver = "3"
 
-# The integration tests are bound by raw emulation speed; these two make every test faster at once.
+# The tests are bound by raw emulation speed; these two make every test faster at once.
 [profile.release]
 lto = "thin"
 codegen-units = 1
 
-# Tests emulate every frame; unoptimised `poke-agent` frames also overflow the test harness's stack.
 [profile.dev.package.gbc]
 opt-level = 3
-
-[profile.dev.package.poke-core]
-opt-level = 3
-
-[profile.dev.package.poke-agent]
-opt-level = 3
-
-# The emulator keeps running while the tests' mock HTTP endpoint answers, so dependencies are optimised too.
-[profile.dev.package."*"]
-opt-level = 2

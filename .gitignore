@@ -1,16 +1,4 @@
 /target
-# A test writes its artifacts relative to its own crate root, not the workspace root.
 **/target/
 .idea/
 .claude/
-
-# `web/dist` must exist for the crate to compile, hence the committed `.gitkeep`.
-/poke-agent-web/web/node_modules/
-/poke-agent-web/web/dist/*
-!/poke-agent-web/web/dist/.gitkeep
-
-# Run directories, `$GB_RUN_DIR` (default `./runs`).
-/runs
-
-# Story exports, `tools/stories/`.
-/stories

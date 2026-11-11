@@ -1,0 +1,36 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Rust
+        run: |
+          set -euo pipefail
+          rustup update stable --no-self-update
+          rustup default stable
+
+      - name: Test
+        run: cargo test --release --locked
+
+      # What `cargo publish` would build, so a release never finds out first.
+      - name: Package
+        run: cargo package --locked -p gbc
