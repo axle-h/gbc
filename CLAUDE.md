@@ -14,7 +14,7 @@ argument, so the code stays the source of truth.
   `workload/` is our own, and a test breaks on its fixed addresses, so rebuild it with its `build.sh`.
 - **`axle-h/poke-agent` is the heavy user**, and its pre-push gates are the real regression suite:
   after a change to timing, the APU or the save-state format, run them there against this checkout
-  (`[patch.crates-io] gbc = { path = "../gbc" }` in its gitignored `.cargo/config.toml`) before
+  (`[patch.crates-io] gbc = { path = "../gbc/gbc" }` in its gitignored `.cargo/config.toml`) before
   releasing.
 - `publish-gbc.yml` is trusted by crates.io by its file name, so renaming it means updating the
   crate's Trusted Publishing settings.
