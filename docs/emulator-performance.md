@@ -1,6 +1,6 @@
 # Emulator performance
 
-Read before optimising `gbc/src/{ppu,core,opcode,mmu}.rs` or `gbc/src/audio/`, and before building a
+Read before optimising `src/{ppu,core,opcode,mmu}.rs` or `src/audio/`, and before building a
 rig to measure them — one was built and deleted, because the yardstick is a game *standing still*
 and that profiles the same as one walking to within two points.
 

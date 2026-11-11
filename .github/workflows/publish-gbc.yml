@@ -28,7 +28,7 @@ jobs:
           rustup update stable --no-self-update
           rustup default stable
 
-      - name: The tag names the version in gbc/Cargo.toml
+      - name: The tag names the version in Cargo.toml
         env:
           TAG: ${{ github.ref_name }}
         run: |

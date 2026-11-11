@@ -1,6 +1,6 @@
 # Emulator core
 
-Read before touching `gbc/src/{mmu,mbc,ppu,savestate,schedule,cycles,game_boy}.rs`, before adding or
+Read before touching `src/{mmu,mbc,ppu,savestate,schedule,cycles,game_boy}.rs`, before adding or
 reordering a serialised field. The full arguments are in the module docs named below; this is the list of what not to break.
 
 ## Not modelled
@@ -11,19 +11,19 @@ reordering a serialised field. The full arguments are in the module docs named b
 
 ## Super Game Boy
 
-- `gbc/src/sgb.rs` colours the PPU's finished DMG frame by reading its greys back as shades, so the
+- `src/sgb.rs` colours the PPU's finished DMG frame by reading its greys back as shades, so the
   DMG ramp in `DMGColor::to_lcd` is the SGB's input as well as the committed screenshots'.
 
 ## Mappers
 
 - Every mapper resolves its bank register differently. MBC1 remaps a zero selection *then* wraps,
   so a wrap can reach bank 0; MBC3 wraps *then* remaps, so it never can; MBC2, MBC5 and HuC1 just
-  mask. The table is in `gbc/src/mbc.rs`'s module docs, and it is what makes blargg's combined
+  mask. The table is in `src/mbc.rs`'s module docs, and it is what makes blargg's combined
   `dmg_sound.gb` terminate.
 
 ## Save states
 
-- `gbc/src/savestate/mod.rs`'s module docs are authoritative. Adding a section is free. Adding a field
+- `src/savestate/mod.rs`'s module docs are authoritative. Adding a section is free. Adding a field
   means appending it inside its section and bumping that section's version. Never reorder or
   retype a shipped value: bincode is positional. Before writing a legacy struct, check whether the
   boundary can be re-cut instead; that is how CGB support cost zero fixture regeneration.
