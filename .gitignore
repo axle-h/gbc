@@ -11,3 +11,6 @@
 
 # Run directories, `$GB_RUN_DIR` (default `./runs`).
 /runs
+
+# Story exports, `tools/stories/`.
+/stories
