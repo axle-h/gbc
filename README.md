@@ -50,7 +50,7 @@ need a Rust toolchain, [rgbds](https://rgbds.gbdev.io) ≥ 1.0.0 to assemble the
 pnpm for the browser UI, and SDL2 if you want the desktop window.
 
 ```shell
-git clone --recursive https://github.com/axle-h/gb.git && cd gb
+git clone --recursive https://github.com/axle-h/gbc.git && cd gbc
 
 # 1. The cartridge. `pokered.gbc` is embedded into the binary at compile time and `pokered.sym` is
 #    parsed by build.rs, and neither is in git. `pokered` and `pokered-sdl` need neither.

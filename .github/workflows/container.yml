@@ -19,9 +19,9 @@ permissions:
   # one-off in its settings (see `k8s/README.md`).
   packages: write
 
-# `ghcr.io/axle-h/gb`, the image `k8s/gb/deployment.yml` pulls.
+# The image `k8s/gb/deployment.yml` pulls. Named, not taken from the repository, which is `gbc`.
 env:
-  IMAGE: ghcr.io/${{ github.repository }}
+  IMAGE: ghcr.io/axle-h/gb
 
 jobs:
   build:
